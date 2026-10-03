@@ -2,15 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
 import { SectionIntro } from "@/components/section-intro";
-import { siteConfig } from "@/lib/site";
+import { getServices } from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
-  title: "Services | Cre8iq",
+  title: "Services",
   description:
     "Explore Cre8iq services across graphic design, UI/UX product design, and web development.",
+  alternates: {
+    canonical: "/services",
+  },
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const services = await getServices();
+
   return (
     <>
       <section className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-14">
@@ -21,11 +26,11 @@ export default function ServicesPage() {
         />
 
         <div className="mt-12 grid gap-5">
-          {siteConfig.services.map((service) => (
+          {services.map((service) => (
             <Link
               key={service.slug}
               href={`/services/${service.slug}`}
-              className="grid gap-8 rounded-lg border border-border bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:grid-cols-[0.75fr_1.25fr]"
+              className="interactive-card grid gap-8 rounded-lg border border-border bg-surface p-6 hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent lg:grid-cols-[0.75fr_1.25fr]"
             >
               <div>
                 <p className="text-sm font-semibold text-accent-strong dark:text-accent">
@@ -77,7 +82,7 @@ export default function ServicesPage() {
 
       <section className="border-y border-border bg-surface">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-18 sm:px-10 lg:grid-cols-3 lg:px-14">
-          <div>
+          <div className="interactive-card rounded-lg border border-transparent p-1">
             <p className="text-base font-semibold text-accent-strong dark:text-accent">
               Best fit
             </p>
@@ -89,7 +94,7 @@ export default function ServicesPage() {
               together from the beginning.
             </p>
           </div>
-          <div>
+          <div className="interactive-card rounded-lg border border-transparent p-1">
             <p className="text-base font-semibold text-accent-strong dark:text-accent">
               Also useful for
             </p>
@@ -101,7 +106,7 @@ export default function ServicesPage() {
               a page that no longer represents the work well.
             </p>
           </div>
-          <div>
+          <div className="interactive-card rounded-lg border border-transparent p-1">
             <p className="text-base font-semibold text-accent-strong dark:text-accent">
               Output
             </p>

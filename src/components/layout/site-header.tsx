@@ -1,8 +1,9 @@
 "use client";
 
+import gsap from "gsap";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BrandLogo } from "@/components/brand-logo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { siteConfig } from "@/lib/site";
@@ -18,16 +19,35 @@ function isActiveLink(pathname: string, href: string) {
 export function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const chromeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const chrome = chromeRef.current;
+
+    if (!chrome || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    gsap.fromTo(
+      chrome,
+      { autoAlpha: 0, y: -18, scale: 0.96 },
+      { autoAlpha: 1, y: 0, scale: 1, duration: 1, ease: "expo.out", delay: 0.16 },
+    );
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between gap-4 px-6 sm:px-10 lg:px-14">
+    <header className="fixed left-1/2 top-4 z-[80] w-[calc(100%-2rem)] max-w-5xl -translate-x-1/2 text-foreground">
+      <div
+        ref={chromeRef}
+        className="cre8iq-glass flex min-h-16 items-center justify-between gap-4 rounded-full px-3 py-2"
+      >
         <Link
           href="/"
           aria-label="Cre8iq home"
-          className="rounded-md bg-deep-navy px-3 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="button-lift flex h-11 items-center rounded-full bg-pure-white px-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          onClick={() => setIsMenuOpen(false)}
         >
-          <BrandLogo className="h-auto w-28 sm:w-32" priority />
+          <BrandLogo className="h-auto w-24 sm:w-28" priority />
         </Link>
 
         <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
@@ -39,10 +59,10 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                   isActive
-                    ? "bg-surface-strong text-accent-strong dark:bg-surface dark:text-accent"
-                    : "text-muted hover:bg-surface hover:text-foreground"
+                    ? "border-border bg-surface text-foreground"
+                    : "border-transparent text-muted hover:bg-surface hover:text-foreground"
                 }`}
               >
                 {link.label}
@@ -55,7 +75,7 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center justify-center rounded-md bg-accent px-4 text-sm font-semibold text-deep-navy transition-colors hover:bg-accent-strong hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="button-lift inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 text-sm font-semibold text-deep-navy hover:bg-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Work with me
           </Link>
@@ -69,7 +89,7 @@ export function SiteHeader() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsMenuOpen((current) => !current)}
-            className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-md border border-border bg-surface transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="button-lift flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-border bg-surface hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <span
               className={`h-0.5 w-4 rounded-full bg-foreground transition-transform ${
@@ -94,9 +114,9 @@ export function SiteHeader() {
         <nav
           id="mobile-navigation"
           aria-label="Mobile navigation"
-          className="border-t border-border bg-background px-6 py-5 shadow-[0_20px_40px_rgba(0,18,36,0.08)] lg:hidden"
+          className="motion-mobile-menu cre8iq-glass mt-3 rounded-[1.75rem] p-3 lg:hidden"
         >
-          <div className="mx-auto grid max-w-7xl gap-2">
+          <div className="grid gap-2">
             {siteConfig.navLinks.map((link) => {
               const isActive = isActiveLink(pathname, link.href);
 
@@ -106,9 +126,9 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`rounded-md px-4 py-3 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                  className={`rounded-2xl px-4 py-3 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                     isActive
-                      ? "bg-surface-strong text-accent-strong dark:bg-surface dark:text-accent"
+                      ? "bg-surface text-foreground"
                       : "text-muted hover:bg-surface hover:text-foreground"
                   }`}
                 >

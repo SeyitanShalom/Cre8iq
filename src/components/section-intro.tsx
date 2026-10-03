@@ -13,14 +13,14 @@ export function SectionIntro({
 }: SectionIntroProps) {
   return (
     <div
-      className={`max-w-3xl ${
+      className={`motion-soft max-w-3xl ${
         align === "center" ? "mx-auto text-center" : ""
       }`}
     >
       <p className="mb-4 text-base font-semibold text-accent-strong dark:text-accent">
         {eyebrow}
       </p>
-      <h1 className="font-heading text-4xl font-semibold leading-tight sm:text-5xl">
+      <h1 className="font-heading text-3xl font-semibold leading-tight sm:text-4xl">
         {title}
       </h1>
       {description ? (

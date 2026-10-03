@@ -1,9 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBand } from "@/components/cta-band";
 import { SectionIntro } from "@/components/section-intro";
-import { sampleProjects } from "@/lib/placeholder-content";
-import { siteConfig } from "@/lib/site";
+import {
+  getPortfolioProjects,
+  getService,
+  getServices,
+} from "@/sanity/lib/content";
 
 type ServicePageProps = {
   params: Promise<{
@@ -11,21 +15,56 @@ type ServicePageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return siteConfig.services.map((service) => ({
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const service = await getService(slug);
+
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: service.title,
+    description: service.summary || service.description,
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
+    openGraph: {
+      title: `${service.title} | Cre8iq`,
+      description: service.summary || service.description,
+      url: `/services/${service.slug}`,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.title} | Cre8iq`,
+      description: service.summary || service.description,
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  const services = await getServices();
+
+  return services.map((service) => ({
     slug: service.slug,
   }));
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
   const { slug } = await params;
-  const service = siteConfig.services.find((item) => item.slug === slug);
+  const service = await getService(slug);
 
   if (!service) {
     notFound();
   }
 
-  const relatedProjects = sampleProjects
+  const projects = await getPortfolioProjects();
+  const relatedProjects = projects
     .filter((project) => project.services.includes(service.title))
     .slice(0, 3);
 
@@ -50,7 +89,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
           <Link
             href="/contact"
-            className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-deep-navy transition-colors hover:bg-accent-strong hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="button-lift inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-deep-navy hover:bg-accent-strong hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Ask about this service
           </Link>
@@ -67,7 +106,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               {service.deliverables.map((deliverable) => (
                 <div
                   key={deliverable}
-                  className="rounded-lg border border-border bg-background p-5"
+                  className="interactive-card rounded-lg border border-border bg-background p-5 hover:border-accent"
                 >
                   <p className="font-heading text-xl font-semibold">
                     {deliverable}
@@ -84,7 +123,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               {service.process.map((step, index) => (
                 <div
                   key={step}
-                  className="rounded-lg border border-border bg-background p-5"
+                  className="interactive-card rounded-lg border border-border bg-background p-5 hover:border-accent"
                 >
                   <p className="text-sm font-semibold text-muted">
                     Step 0{index + 1}
@@ -111,7 +150,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
           </div>
           <Link
             href="/portfolio"
-            className="inline-flex min-h-12 items-center justify-center rounded-md border border-border px-6 text-base font-semibold text-foreground transition-colors hover:border-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:hover:text-accent"
+            className="button-lift inline-flex min-h-12 items-center justify-center rounded-md border border-border px-6 text-base font-semibold text-foreground hover:border-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:hover:text-accent"
           >
             View all work
           </Link>
@@ -122,7 +161,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
             <Link
               key={project.slug}
               href={`/portfolio/${project.slug}`}
-              className="rounded-lg border border-border bg-surface p-6 transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="interactive-card rounded-lg border border-border bg-surface p-6 hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               <p className="text-sm font-semibold text-accent-strong dark:text-accent">
                 {project.category}

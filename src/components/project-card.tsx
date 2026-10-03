@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { ProjectVisual } from "@/components/project-visual";
-import { sampleProjects } from "@/lib/placeholder-content";
-
-type Project = (typeof sampleProjects)[number];
+import type { PortfolioProject } from "@/lib/placeholder-content";
 
 type ProjectCardProps = {
-  project: Project;
+  project: PortfolioProject;
   featured?: boolean;
 };
 
@@ -13,7 +11,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
     <Link
       href={`/portfolio/${project.slug}`}
-      className={`group grid gap-5 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+      className={`interactive-card cre8iq-glass-card group grid gap-5 rounded-lg p-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
         featured ? "lg:grid-cols-[0.95fr_1.05fr] lg:items-center" : ""
       }`}
     >
@@ -21,17 +19,29 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         title={project.title}
         category={project.category}
         accent={project.accent}
+        visual={project.visual}
+        imageUrl={project.imageUrl}
+        imageAlt={project.imageAlt}
+        priority={featured}
         compact={!featured}
       />
       <div className="p-1">
-        <p className="text-sm font-semibold text-accent-strong dark:text-accent">
-          {project.category} / {project.year}
-        </p>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm font-semibold text-accent-strong dark:text-accent">
+            {project.category} / {project.year}
+          </span>
+          <span className="rounded-md border border-border bg-background px-2.5 py-1 text-xs font-semibold text-muted">
+            {project.format}
+          </span>
+        </div>
         <h2 className="mt-3 font-heading text-2xl font-semibold leading-tight">
           {project.title}
         </h2>
         <p className="mt-4 text-base leading-7 text-muted">
           {project.summary}
+        </p>
+        <p className="mt-4 text-sm font-semibold text-muted">
+          {project.client} / {project.role}
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
           {project.services.slice(0, 3).map((service) => (
@@ -44,7 +54,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           ))}
         </div>
         <p className="mt-6 text-sm font-semibold text-accent-strong transition-colors group-hover:text-foreground dark:text-accent">
-          View project
+          View {project.format === "Case study" ? "case study" : "project"}
         </p>
       </div>
     </Link>

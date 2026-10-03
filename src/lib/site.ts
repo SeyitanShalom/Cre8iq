@@ -1,5 +1,6 @@
 export const siteConfig = {
   name: "Cre8iq",
+  location: "Lagos, Nigeria",
   email: "cre8iq@gmail.com",
   whatsappDisplay: "+2349064750948",
   whatsappUrl: "https://wa.me/2349064750948",

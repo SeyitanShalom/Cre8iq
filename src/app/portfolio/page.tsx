@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
-import { ProjectCard } from "@/components/project-card";
+import { PortfolioBrowser } from "@/components/portfolio-browser";
 import { SectionIntro } from "@/components/section-intro";
-import { sampleProjects } from "@/lib/placeholder-content";
+import {
+  getProjectCategories,
+  getProjectServices,
+} from "@/lib/placeholder-content";
+import { getPortfolioProjects } from "@/sanity/lib/content";
 
 export const metadata: Metadata = {
-  title: "Portfolio | Cre8iq",
+  title: "Portfolio",
   description:
     "Explore sample Cre8iq portfolio projects across design, product, and web development.",
+  alternates: {
+    canonical: "/portfolio",
+  },
 };
 
-const categories = Array.from(
-  new Set(sampleProjects.map((project) => project.category)),
-);
+export default async function PortfolioPage() {
+  const projects = await getPortfolioProjects();
 
-export default function PortfolioPage() {
   return (
     <>
       <section className="mx-auto w-full max-w-7xl px-6 py-16 sm:px-10 lg:px-14">
@@ -24,22 +29,11 @@ export default function PortfolioPage() {
           description="A focused archive of visual systems, product concepts, and refined web experiences, shaped to show both the thinking and the finish."
         />
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {categories.map((category) => (
-            <span
-              key={category}
-              className="rounded-md border border-border bg-surface px-4 py-2 text-sm font-semibold text-muted"
-            >
-              {category}
-            </span>
-          ))}
-        </div>
-
-        <div className="mt-12 grid gap-5 lg:grid-cols-2">
-          {sampleProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
-          ))}
-        </div>
+        <PortfolioBrowser
+          projects={projects}
+          categories={getProjectCategories(projects)}
+          services={getProjectServices(projects)}
+        />
       </section>
 
       <CtaBand

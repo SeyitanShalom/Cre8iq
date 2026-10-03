@@ -5,9 +5,12 @@ import { processSteps, tools } from "@/lib/placeholder-content";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About | Cre8iq",
+  title: "About",
   description:
     "Learn about the personal creative direction behind Cre8iq and the design approach shaping the portfolio.",
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 const strengths = [
@@ -42,7 +45,7 @@ export default function AboutPage() {
           {strengths.map((strength) => (
             <article
               key={strength.title}
-              className="rounded-lg border border-border bg-surface p-6"
+              className="interactive-card rounded-lg border border-border bg-surface p-6 hover:border-accent"
             >
               <h2 className="font-heading text-2xl font-semibold">
                 {strength.title}
@@ -66,7 +69,7 @@ export default function AboutPage() {
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="rounded-lg border border-border bg-background p-6">
+            <div className="interactive-card rounded-lg border border-border bg-background p-6 hover:border-accent">
               <h3 className="font-heading text-2xl font-semibold">
                 Design with direction
               </h3>
@@ -75,7 +78,7 @@ export default function AboutPage() {
                 first impression, or a smoother user decision.
               </p>
             </div>
-            <div className="rounded-lg border border-border bg-background p-6">
+            <div className="interactive-card rounded-lg border border-border bg-background p-6 hover:border-accent">
               <h3 className="font-heading text-2xl font-semibold">
                 Development with taste
               </h3>
@@ -100,7 +103,7 @@ export default function AboutPage() {
             <a
               href={siteConfig.resumeUrl}
               download
-              className="mt-8 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-deep-navy transition-colors hover:bg-accent-strong hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className="button-lift mt-8 inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-base font-semibold text-deep-navy hover:bg-accent-strong hover:text-background focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             >
               Download CV
             </a>
@@ -109,7 +112,7 @@ export default function AboutPage() {
             {processSteps.map((step, index) => (
               <article
                 key={step.title}
-                className="rounded-lg border border-border bg-surface p-6"
+                className="interactive-card rounded-lg border border-border bg-surface p-6 hover:border-accent"
               >
                 <p className="font-heading text-3xl font-semibold text-accent-strong dark:text-accent">
                   0{index + 1}
@@ -138,7 +141,7 @@ export default function AboutPage() {
             {tools.map((tool) => (
               <span
                 key={tool}
-                className="rounded-md border border-border bg-background px-4 py-2 text-base font-semibold text-muted"
+                className="button-lift rounded-md border border-border bg-background px-4 py-2 text-base font-semibold text-muted"
               >
                 {tool}
               </span>
