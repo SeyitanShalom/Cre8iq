@@ -1,3 +1,4 @@
+import { ArrowUpRight, BriefcaseBusiness, Tag } from "lucide-react";
 import Link from "next/link";
 import { ProjectVisual } from "@/components/project-visual";
 import type { PortfolioProject } from "@/content";
@@ -27,10 +28,12 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
       />
       <div className="p-1">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-sm font-semibold text-accent-strong dark:text-accent">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-strong dark:text-accent">
+            <BriefcaseBusiness aria-hidden="true" className="h-4 w-4" />
             {project.category} / {project.year}
           </span>
-          <span className="rounded-md border border-border bg-background px-2.5 py-1 text-xs font-semibold text-muted">
+          <span className="inline-flex items-center gap-1.5 rounded-md border border-border bg-background px-2.5 py-1 text-xs font-semibold text-muted">
+            <Tag aria-hidden="true" className="h-3.5 w-3.5" />
             {project.format}
           </span>
         </div>
@@ -53,8 +56,9 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
             </span>
           ))}
         </div>
-        <p className="mt-6 text-sm font-semibold text-accent-strong transition-colors group-hover:text-foreground dark:text-accent">
+        <p className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-accent-strong transition-colors group-hover:text-foreground dark:text-accent">
           View {project.format === "Case study" ? "case study" : "project"}
+          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
         </p>
       </div>
     </Link>

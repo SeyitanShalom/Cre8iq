@@ -18,10 +18,16 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: #ffffff;
-  --doodle-line: color-mix(in srgb, var(--brand-ice) 18%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 24%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-white) 12%, transparent);
-  --doodle-opacity: 0.72;
+  --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+  --doodle-opacity: 0.86;
+  --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
+  --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
+  --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
+  --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
+  --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
+  --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
   color-scheme: dark;
 }
 
@@ -36,10 +42,16 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: var(--brand-white);
-  --doodle-line: color-mix(in srgb, var(--brand-deep-teal) 16%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 28%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-navy) 10%, transparent);
-  --doodle-opacity: 0.52;
+  --doodle-line: color-mix(in srgb, var(--brand-deep-teal) 28%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 42%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-navy) 18%, transparent);
+  --doodle-opacity: 0.66;
+  --glass-fill: color-mix(in srgb, var(--surface) 76%, transparent);
+  --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 46%, var(--surface));
+  --glass-highlight: color-mix(in srgb, var(--pure-white) 62%, transparent);
+  --glass-border: color-mix(in srgb, var(--brand-deep-teal) 16%, var(--pure-white) 26%);
+  --glass-shadow: color-mix(in srgb, var(--deep-navy) 13%, transparent);
+  --glass-tint: color-mix(in srgb, var(--accent) 9%, transparent);
   color-scheme: light;
 }
 
@@ -54,10 +66,16 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: var(--brand-white);
-  --doodle-line: color-mix(in srgb, var(--brand-ice) 18%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 24%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-white) 12%, transparent);
-  --doodle-opacity: 0.72;
+  --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+  --doodle-opacity: 0.86;
+  --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
+  --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
+  --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
+  --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
+  --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
+  --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
   color-scheme: dark;
 }
 
@@ -71,10 +89,16 @@
     --border: color-mix(in srgb, var(--brand-white) 16%, transparent);
     --accent: var(--brand-teal);
     --accent-strong: var(--brand-deep-teal);
-    --doodle-line: color-mix(in srgb, var(--brand-ice) 18%, transparent);
-    --doodle-accent: color-mix(in srgb, var(--brand-teal) 24%, transparent);
-    --doodle-muted: color-mix(in srgb, var(--brand-white) 12%, transparent);
-    --doodle-opacity: 0.72;
+    --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
+    --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+    --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+    --doodle-opacity: 0.86;
+    --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
+    --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
+    --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
+    --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
+    --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
+    --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
     color-scheme: dark;
   }
 }
@@ -104,11 +128,6 @@ html {
   scroll-behavior: smooth;
 }
 
-html.has-custom-cursor,
-html.has-custom-cursor * {
-  cursor: none !important;
-}
-
 body {
   position: relative;
   min-height: 100vh;
@@ -134,36 +153,39 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  contain: layout paint style;
 }
 
 .cre8iq-doodle-field::before {
   position: absolute;
-  inset: -16%;
+  inset: -22%;
   content: "";
   background:
     linear-gradient(
-      120deg,
-      color-mix(in srgb, var(--background) 82%, var(--accent) 18%) 0%,
-      var(--background) 30%,
-      color-mix(in srgb, var(--background) 76%, var(--brand-ice) 24%) 52%,
-      color-mix(in srgb, var(--background) 76%, var(--accent-strong) 24%) 76%,
-      color-mix(in srgb, var(--background) 88%, var(--accent) 12%) 100%
+      118deg,
+      var(--background) 0%,
+      color-mix(in srgb, var(--background) 68%, var(--accent-strong) 32%) 24%,
+      color-mix(in srgb, var(--accent) 42%, var(--background) 58%) 43%,
+      color-mix(in srgb, var(--accent) 62%, var(--background) 38%) 52%,
+      color-mix(in srgb, var(--accent-strong) 62%, var(--background) 38%) 68%,
+      var(--background) 100%
     ),
     linear-gradient(
-      235deg,
-      color-mix(in srgb, var(--accent-strong) 22%, transparent),
-      transparent 36%,
-      color-mix(in srgb, var(--accent) 16%, transparent) 66%,
-      color-mix(in srgb, var(--brand-ice) 13%, transparent)
+      45deg,
+      transparent 0 22%,
+      color-mix(in srgb, var(--brand-ice) 12%, transparent) 28%,
+      transparent 36% 58%,
+      color-mix(in srgb, var(--brand-teal) 18%, transparent) 65%,
+      transparent 74% 100%
     );
   background-position:
     0% 50%,
     100% 50%;
   background-size:
-    320% 320%,
-    240% 240%;
-  filter: saturate(1.08);
-  animation: cre8iq-gradient-pan 26s ease-in-out infinite alternate;
+    260% 260%,
+    180% 180%;
+  will-change: transform;
+  animation: cre8iq-gradient-pan 16s ease-in-out infinite alternate;
 }
 
 .cre8iq-doodle-field::after {
@@ -173,8 +195,8 @@ body {
   content: "";
   background-image: repeating-linear-gradient(
     135deg,
-    color-mix(in srgb, var(--foreground) 5%, transparent) 0 1px,
-    transparent 1px 5rem
+    color-mix(in srgb, var(--brand-ice) 8%, transparent) 0 1px,
+    transparent 1px 4.25rem
   );
   mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
   -webkit-mask-image: linear-gradient(
@@ -184,8 +206,8 @@ body {
     #000 80%,
     transparent
   );
-  opacity: 0.32;
-  animation: cre8iq-background-sheen 18s ease-in-out infinite alternate;
+  opacity: 0.3;
+  animation: cre8iq-background-sheen 10s ease-in-out infinite alternate;
 }
 
 .cre8iq-doodle-item {
@@ -204,8 +226,7 @@ body {
     scale(var(--doodle-scale, 1));
   transform-origin: center;
   will-change: transform;
-  filter: drop-shadow(0 14px 26px color-mix(in srgb, var(--deep-navy) 18%, transparent));
-  animation: cre8iq-doodle-drift var(--doodle-duration, 20s) ease-in-out infinite
+  animation: cre8iq-doodle-roam var(--doodle-duration, 16s) ease-in-out infinite
     alternate;
   animation-delay: var(--doodle-delay, 0s);
 }
@@ -220,12 +241,12 @@ body {
   top: 15vh;
   width: clamp(7rem, 13vw, 12rem);
   --doodle-rotate: -12deg;
-  --doodle-mid-x: 0.55rem;
-  --doodle-mid-y: -1rem;
-  --doodle-drift-x: 1.45rem;
-  --doodle-drift-y: 0.8rem;
-  --doodle-spin: 10deg;
-  --doodle-duration: 19s;
+  --doodle-mid-x: 12vw;
+  --doodle-mid-y: -7vh;
+  --doodle-drift-x: 21vw;
+  --doodle-drift-y: 14vh;
+  --doodle-spin: 22deg;
+  --doodle-duration: 13s;
   --doodle-delay: -4s;
 }
 
@@ -235,12 +256,12 @@ body {
   width: clamp(5.4rem, 9vw, 9rem);
   color: var(--doodle-accent);
   --doodle-rotate: 8deg;
-  --doodle-mid-x: -1rem;
-  --doodle-mid-y: 0.35rem;
-  --doodle-drift-x: -1.5rem;
-  --doodle-drift-y: 1.1rem;
-  --doodle-spin: -9deg;
-  --doodle-duration: 23s;
+  --doodle-mid-x: -13vw;
+  --doodle-mid-y: 9vh;
+  --doodle-drift-x: -24vw;
+  --doodle-drift-y: 18vh;
+  --doodle-spin: -26deg;
+  --doodle-duration: 15s;
   --doodle-delay: -9s;
 }
 
@@ -250,12 +271,12 @@ body {
   width: clamp(4.6rem, 7vw, 7rem);
   color: var(--doodle-muted);
   --doodle-rotate: 15deg;
-  --doodle-mid-x: 0.7rem;
-  --doodle-mid-y: 0.8rem;
-  --doodle-drift-x: -0.9rem;
-  --doodle-drift-y: 1.45rem;
-  --doodle-spin: 18deg;
-  --doodle-duration: 17s;
+  --doodle-mid-x: 8vw;
+  --doodle-mid-y: 18vh;
+  --doodle-drift-x: -16vw;
+  --doodle-drift-y: 31vh;
+  --doodle-spin: 36deg;
+  --doodle-duration: 12s;
   --doodle-delay: -7s;
 }
 
@@ -265,12 +286,12 @@ body {
   width: clamp(7rem, 14vw, 14rem);
   color: var(--doodle-line);
   --doodle-rotate: -6deg;
-  --doodle-mid-x: -0.8rem;
-  --doodle-mid-y: -0.55rem;
-  --doodle-drift-x: -1.75rem;
-  --doodle-drift-y: 0.5rem;
-  --doodle-spin: 7deg;
-  --doodle-duration: 25s;
+  --doodle-mid-x: -18vw;
+  --doodle-mid-y: -10vh;
+  --doodle-drift-x: -32vw;
+  --doodle-drift-y: 10vh;
+  --doodle-spin: 20deg;
+  --doodle-duration: 17s;
   --doodle-delay: -12s;
 }
 
@@ -280,12 +301,12 @@ body {
   width: clamp(4.6rem, 8vw, 8rem);
   color: var(--doodle-accent);
   --doodle-rotate: 20deg;
-  --doodle-mid-x: 1rem;
-  --doodle-mid-y: 0.4rem;
-  --doodle-drift-x: 1.2rem;
-  --doodle-drift-y: -1.25rem;
-  --doodle-spin: -13deg;
-  --doodle-duration: 21s;
+  --doodle-mid-x: 15vw;
+  --doodle-mid-y: -19vh;
+  --doodle-drift-x: 28vw;
+  --doodle-drift-y: -30vh;
+  --doodle-spin: -34deg;
+  --doodle-duration: 14s;
   --doodle-delay: -5s;
 }
 
@@ -295,12 +316,12 @@ body {
   width: clamp(6.2rem, 12vw, 12rem);
   color: var(--doodle-muted);
   --doodle-rotate: -18deg;
-  --doodle-mid-x: -1.2rem;
-  --doodle-mid-y: 0.65rem;
-  --doodle-drift-x: 0.8rem;
-  --doodle-drift-y: -1.35rem;
-  --doodle-spin: 12deg;
-  --doodle-duration: 24s;
+  --doodle-mid-x: -12vw;
+  --doodle-mid-y: -14vh;
+  --doodle-drift-x: 14vw;
+  --doodle-drift-y: -27vh;
+  --doodle-spin: 28deg;
+  --doodle-duration: 16s;
   --doodle-delay: -14s;
 }
 
@@ -310,12 +331,12 @@ body {
   width: clamp(4.5rem, 8vw, 8rem);
   color: var(--doodle-line);
   --doodle-rotate: 6deg;
-  --doodle-mid-x: 0.7rem;
-  --doodle-mid-y: -0.75rem;
-  --doodle-drift-x: -1.1rem;
-  --doodle-drift-y: -1.45rem;
-  --doodle-spin: -11deg;
-  --doodle-duration: 20s;
+  --doodle-mid-x: 11vw;
+  --doodle-mid-y: -22vh;
+  --doodle-drift-x: -18vw;
+  --doodle-drift-y: -36vh;
+  --doodle-spin: -32deg;
+  --doodle-duration: 13s;
   --doodle-delay: -8s;
 }
 
@@ -324,14 +345,14 @@ body {
   bottom: 5vh;
   width: clamp(4.25rem, 7vw, 7rem);
   color: var(--doodle-accent);
-  --doodle-mark-opacity: 0.56;
+  --doodle-mark-opacity: 0.7;
   --doodle-rotate: 12deg;
-  --doodle-mid-x: -0.7rem;
-  --doodle-mid-y: -0.8rem;
-  --doodle-drift-x: -1.25rem;
-  --doodle-drift-y: 1rem;
-  --doodle-spin: 20deg;
-  --doodle-duration: 16s;
+  --doodle-mid-x: -16vw;
+  --doodle-mid-y: -9vh;
+  --doodle-drift-x: -27vw;
+  --doodle-drift-y: 16vh;
+  --doodle-spin: 42deg;
+  --doodle-duration: 11s;
   --doodle-delay: -2s;
 }
 
@@ -341,12 +362,12 @@ body {
   width: clamp(5.2rem, 9vw, 9rem);
   color: var(--doodle-muted);
   --doodle-rotate: -23deg;
-  --doodle-mid-x: 0.9rem;
-  --doodle-mid-y: 0.55rem;
-  --doodle-drift-x: 1.45rem;
-  --doodle-drift-y: -0.95rem;
-  --doodle-spin: 9deg;
-  --doodle-duration: 22s;
+  --doodle-mid-x: 20vw;
+  --doodle-mid-y: 12vh;
+  --doodle-drift-x: 34vw;
+  --doodle-drift-y: -17vh;
+  --doodle-spin: 24deg;
+  --doodle-duration: 18s;
   --doodle-delay: -16s;
 }
 
@@ -355,14 +376,14 @@ body {
   top: 26vh;
   width: clamp(4.8rem, 8vw, 8rem);
   color: var(--doodle-accent);
-  --doodle-mark-opacity: 0.5;
+  --doodle-mark-opacity: 0.68;
   --doodle-rotate: -2deg;
-  --doodle-mid-x: -0.7rem;
-  --doodle-mid-y: 0.9rem;
-  --doodle-drift-x: 1rem;
-  --doodle-drift-y: 1.35rem;
-  --doodle-spin: -10deg;
-  --doodle-duration: 26s;
+  --doodle-mid-x: -17vw;
+  --doodle-mid-y: 16vh;
+  --doodle-drift-x: 11vw;
+  --doodle-drift-y: 33vh;
+  --doodle-spin: -30deg;
+  --doodle-duration: 19s;
   --doodle-delay: -11s;
 }
 
@@ -371,14 +392,14 @@ body {
   bottom: 7vh;
   width: clamp(5rem, 10vw, 9.5rem);
   color: var(--doodle-line);
-  --doodle-mark-opacity: 0.48;
+  --doodle-mark-opacity: 0.66;
   --doodle-rotate: 9deg;
-  --doodle-mid-x: 1.1rem;
-  --doodle-mid-y: -0.45rem;
-  --doodle-drift-x: 1.65rem;
-  --doodle-drift-y: 1rem;
-  --doodle-spin: 8deg;
-  --doodle-duration: 27s;
+  --doodle-mid-x: 18vw;
+  --doodle-mid-y: -17vh;
+  --doodle-drift-x: 31vw;
+  --doodle-drift-y: -28vh;
+  --doodle-spin: 21deg;
+  --doodle-duration: 20s;
   --doodle-delay: -18s;
 }
 
@@ -387,14 +408,14 @@ body {
   bottom: 23vh;
   width: clamp(3.5rem, 6vw, 6rem);
   color: var(--doodle-muted);
-  --doodle-mark-opacity: 0.42;
+  --doodle-mark-opacity: 0.62;
   --doodle-rotate: -8deg;
-  --doodle-mid-x: -0.55rem;
-  --doodle-mid-y: -0.7rem;
-  --doodle-drift-x: 0.95rem;
-  --doodle-drift-y: -1.1rem;
-  --doodle-spin: 15deg;
-  --doodle-duration: 18s;
+  --doodle-mid-x: -14vw;
+  --doodle-mid-y: -13vh;
+  --doodle-drift-x: 19vw;
+  --doodle-drift-y: -24vh;
+  --doodle-spin: 38deg;
+  --doodle-duration: 12s;
   --doodle-delay: -6s;
 }
 
@@ -437,19 +458,27 @@ a {
 
 .interactive-card {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   background:
     linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--pure-white) 9%, transparent),
-      color-mix(in srgb, var(--accent) 8%, transparent) 45%,
-      color-mix(in srgb, var(--surface) 78%, transparent)
-    ) !important;
-  border-color: var(--border) !important;
+      150deg,
+      var(--glass-highlight),
+      transparent 30%
+    ),
+    linear-gradient(
+      125deg,
+      var(--glass-tint),
+      transparent 48%
+    ),
+    var(--glass-fill) !important;
+  border-color: var(--glass-border) !important;
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 20%, transparent),
-    0 18px 60px color-mix(in srgb, var(--deep-navy) 18%, transparent);
-  backdrop-filter: blur(10px) saturate(1.08);
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 color-mix(in srgb, var(--deep-navy) 10%, transparent),
+    0 18px 54px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(12px) saturate(1.18);
+  backdrop-filter: blur(12px) saturate(1.18);
   transition:
     transform 220ms ease,
     border-color 220ms ease,
@@ -467,12 +496,12 @@ a {
     linear-gradient(
       120deg,
       transparent,
-      color-mix(in srgb, var(--brand-ice) 18%, transparent),
-      color-mix(in srgb, var(--accent) 16%, transparent),
+      color-mix(in srgb, var(--brand-ice) 18%, transparent) 34%,
+      color-mix(in srgb, var(--accent) 18%, transparent) 48%,
       transparent
     );
   background-size: 220% 220%;
-  opacity: 0;
+  opacity: 0.34;
   transition: opacity 220ms ease;
 }
 
@@ -483,13 +512,15 @@ a {
 
 .interactive-card:hover {
   transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--accent) 42%, var(--glass-border)) !important;
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 28%, transparent),
-    0 24px 80px color-mix(in srgb, var(--accent) 16%, transparent);
+    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 34%, transparent),
+    inset 0 -1px 0 color-mix(in srgb, var(--deep-navy) 12%, transparent),
+    0 24px 68px color-mix(in srgb, var(--accent) 14%, var(--glass-shadow));
 }
 
 .interactive-card:hover::before {
-  opacity: 1;
+  opacity: 0.72;
 }
 
 :root[data-theme="dark"] .interactive-card:hover {
@@ -569,18 +600,50 @@ a {
 }
 
 .cre8iq-glass {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   border: 1px solid var(--border);
   background:
     linear-gradient(
-      135deg,
-      color-mix(in srgb, var(--pure-white) 12%, transparent),
-      color-mix(in srgb, var(--surface) 70%, transparent)
+      145deg,
+      var(--glass-highlight),
+      transparent 30%
     ),
-    color-mix(in srgb, var(--background) 72%, transparent);
+    linear-gradient(
+      115deg,
+      var(--glass-tint),
+      transparent 40%
+    ),
+    var(--glass-fill);
+  border-color: var(--glass-border);
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 22%, transparent),
-    0 24px 80px color-mix(in srgb, var(--deep-navy) 32%, transparent);
-  backdrop-filter: blur(14px) saturate(1.08);
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 color-mix(in srgb, var(--deep-navy) 12%, transparent),
+    0 22px 66px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+}
+
+.cre8iq-glass::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--pure-white) 18%, transparent),
+      transparent 26% 74%,
+      color-mix(in srgb, var(--accent) 12%, transparent)
+    );
+  opacity: 0.56;
+}
+
+.cre8iq-glass > * {
+  position: relative;
+  z-index: 1;
 }
 
 .cre8iq-panel {
@@ -588,62 +651,101 @@ a {
   background:
     linear-gradient(
       145deg,
-      color-mix(in srgb, var(--pure-white) 10%, transparent),
-      color-mix(in srgb, var(--accent) 7%, transparent) 44%,
-      color-mix(in srgb, var(--surface) 78%, transparent)
-    );
+      var(--glass-highlight),
+      transparent 32%
+    ),
+    linear-gradient(
+      120deg,
+      var(--glass-tint),
+      transparent 60%
+    ),
+    color-mix(in srgb, var(--glass-fill-strong) 78%, transparent);
+  border-color: var(--glass-border);
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 16%, transparent),
-    0 18px 56px color-mix(in srgb, var(--deep-navy) 16%, transparent);
-  backdrop-filter: blur(10px) saturate(1.06);
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 color-mix(in srgb, var(--deep-navy) 9%, transparent),
+    0 16px 42px color-mix(in srgb, var(--glass-shadow) 72%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(1.14);
+  backdrop-filter: blur(10px) saturate(1.14);
 }
 
 .cre8iq-panel:hover {
-  border-color: color-mix(in srgb, var(--accent) 72%, var(--border));
-  background: color-mix(in srgb, var(--surface-strong) 18%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 58%, var(--glass-border));
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--pure-white) 28%, transparent),
+      transparent 32%
+    ),
+    color-mix(in srgb, var(--glass-fill-strong) 88%, var(--accent) 12%);
 }
 
 .cre8iq-glass-card {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
   border: 1px solid var(--border);
   background:
     linear-gradient(
-      140deg,
-      color-mix(in srgb, var(--pure-white) 12%, transparent),
-      color-mix(in srgb, var(--accent) 8%, transparent) 50%,
-      color-mix(in srgb, var(--surface) 80%, transparent)
-    );
+      150deg,
+      var(--glass-highlight),
+      transparent 30%
+    ),
+    linear-gradient(
+      118deg,
+      var(--glass-tint),
+      transparent 54%
+    ),
+    var(--glass-fill);
+  border-color: var(--glass-border);
   box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--pure-white) 20%, transparent),
-    0 22px 70px color-mix(in srgb, var(--deep-navy) 22%, transparent);
-  backdrop-filter: blur(10px) saturate(1.08);
+    inset 0 1px 0 var(--glass-highlight),
+    inset 0 -1px 0 color-mix(in srgb, var(--deep-navy) 10%, transparent),
+    0 20px 62px var(--glass-shadow);
+  -webkit-backdrop-filter: blur(12px) saturate(1.18);
+  backdrop-filter: blur(12px) saturate(1.18);
 }
 
 .cre8iq-glass-card::after {
   position: absolute;
-  inset: -35%;
+  inset: 0;
+  z-index: 0;
   pointer-events: none;
   content: "";
   background:
-    conic-gradient(
-      from 180deg,
+    linear-gradient(
+      115deg,
       transparent,
-      color-mix(in srgb, var(--accent) 24%, transparent),
-      color-mix(in srgb, var(--brand-ice) 20%, transparent),
+      color-mix(in srgb, var(--brand-ice) 16%, transparent) 38%,
+      color-mix(in srgb, var(--accent) 16%, transparent) 52%,
       transparent
     );
-  opacity: 0;
+  opacity: 0.2;
   transition: opacity 260ms ease;
 }
 
 .cre8iq-glass-card:hover::after {
-  opacity: 1;
+  opacity: 0.58;
 }
 
 .cre8iq-glass-card > * {
   position: relative;
   z-index: 1;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .interactive-card,
+  .cre8iq-glass,
+  .cre8iq-panel,
+  .cre8iq-glass-card {
+    background:
+      linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--pure-white) 12%, transparent),
+        color-mix(in srgb, var(--accent) 8%, transparent) 42%,
+        color-mix(in srgb, var(--surface) 92%, var(--background))
+      ) !important;
+  }
 }
 
 .cre8iq-soft-fill {
@@ -707,48 +809,49 @@ a {
 
 @keyframes cre8iq-gradient-pan {
   0% {
-    background-position:
-      0% 48%,
-      100% 52%;
-    transform: scale(1) rotate(0deg);
+    transform: translate3d(-2%, -1%, 0) scale(1.03) rotate(0deg);
   }
 
   50% {
-    background-position:
-      86% 38%,
-      18% 72%;
-    transform: scale(1.03) rotate(1deg);
+    transform: translate3d(2%, 1%, 0) scale(1.06) rotate(0.65deg);
   }
 
   100% {
-    background-position:
-      100% 56%,
-      0% 42%;
-    transform: scale(1.06) rotate(-1deg);
+    transform: translate3d(1%, -2%, 0) scale(1.08) rotate(-0.65deg);
   }
 }
 
 @keyframes cre8iq-background-sheen {
   0% {
-    opacity: 0.22;
-    transform: translate3d(-2%, 0, 0);
+    opacity: 0.26;
+    transform: translate3d(-4%, 0, 0);
   }
 
   100% {
-    opacity: 0.38;
-    transform: translate3d(2%, 0, 0);
+    opacity: 0.5;
+    transform: translate3d(4%, 0, 0);
   }
 }
 
-@keyframes cre8iq-doodle-drift {
+@keyframes cre8iq-doodle-roam {
   0% {
     transform: translate3d(0, 0, 0) rotate(var(--doodle-rotate, 0deg))
       scale(var(--doodle-scale, 1));
   }
 
-  48% {
+  32% {
     transform: translate3d(var(--doodle-mid-x, 0.6rem), var(--doodle-mid-y, -0.6rem), 0)
       rotate(calc(var(--doodle-rotate, 0deg) - var(--doodle-spin, 8deg)))
+      scale(var(--doodle-scale, 1));
+  }
+
+  66% {
+    transform: translate3d(
+        var(--doodle-drift-x, 1rem),
+        var(--doodle-mid-y, -0.6rem),
+        0
+      )
+      rotate(calc(var(--doodle-rotate, 0deg) + var(--doodle-spin, 8deg)))
       scale(var(--doodle-scale, 1));
   }
 
@@ -758,7 +861,7 @@ a {
         var(--doodle-drift-y, -1rem),
         0
       )
-      rotate(calc(var(--doodle-rotate, 0deg) + var(--doodle-spin, 8deg)))
+      rotate(calc(var(--doodle-rotate, 0deg) - var(--doodle-spin, 8deg)))
       scale(var(--doodle-scale, 1));
   }
 }

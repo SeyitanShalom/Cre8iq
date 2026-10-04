@@ -1,5 +1,13 @@
 "use client";
 
+import {
+  BriefcaseBusiness,
+  FileText,
+  Filter,
+  FolderKanban,
+  Layers3,
+  X,
+} from "lucide-react";
 import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/project-card";
 import type { PortfolioProject } from "@/content";
@@ -42,13 +50,28 @@ export function PortfolioBrowser({
     <div className="mt-12 grid gap-8 lg:grid-cols-[18rem_1fr] lg:items-start">
       <aside className="interactive-card cre8iq-glass-card rounded-lg p-5 lg:sticky lg:top-24">
         <div>
-          <p className="text-sm font-semibold uppercase text-muted">
-            Portfolio system
-          </p>
+          <div className="flex items-center gap-3">
+            <FolderKanban aria-hidden="true" className="h-5 w-5 text-accent" />
+            <p className="text-sm font-semibold uppercase text-muted">
+              Portfolio system
+            </p>
+          </div>
           <div className="mt-4 grid grid-cols-3 gap-3 text-center">
-            <Stat value={projects.length.toString().padStart(2, "0")} label="Projects" />
-            <Stat value={caseStudyCount.toString().padStart(2, "0")} label="Case studies" />
-            <Stat value={simpleProjectCount.toString().padStart(2, "0")} label="Simple" />
+            <Stat
+              icon={BriefcaseBusiness}
+              value={projects.length.toString().padStart(2, "0")}
+              label="Projects"
+            />
+            <Stat
+              icon={FileText}
+              value={caseStudyCount.toString().padStart(2, "0")}
+              label="Case studies"
+            />
+            <Stat
+              icon={Layers3}
+              value={simpleProjectCount.toString().padStart(2, "0")}
+              label="Simple"
+            />
           </div>
         </div>
 
@@ -81,8 +104,9 @@ export function PortfolioBrowser({
                 setActiveCategory(allFilter);
                 setActiveService(allFilter);
               }}
-              className="button-lift inline-flex min-h-11 items-center justify-center rounded-md border border-border px-4 text-sm font-semibold text-foreground hover:border-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:hover:text-accent"
+              className="button-lift inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border px-4 text-sm font-semibold text-foreground hover:border-accent hover:text-accent-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:hover:text-accent"
             >
+              <X aria-hidden="true" className="h-4 w-4" />
               Clear filters
             </button>
           ) : null}
@@ -110,9 +134,18 @@ export function PortfolioBrowser({
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
+function Stat({
+  icon: Icon,
+  value,
+  label,
+}: {
+  icon: typeof BriefcaseBusiness;
+  value: string;
+  label: string;
+}) {
   return (
     <div className="cre8iq-panel rounded-md px-2 py-3">
+      <Icon aria-hidden="true" className="mx-auto mb-2 h-4 w-4 text-accent" />
       <p className="font-heading text-xl font-semibold text-accent-strong dark:text-accent">
         {value}
       </p>
@@ -136,7 +169,10 @@ function FilterGroup({
 }) {
   return (
     <div className={className}>
-      <p className="text-sm font-semibold uppercase text-muted">{label}</p>
+      <div className="flex items-center gap-2">
+        <Filter aria-hidden="true" className="h-4 w-4 text-accent" />
+        <p className="text-sm font-semibold uppercase text-muted">{label}</p>
+      </div>
       <div className="mt-3 flex flex-wrap gap-2 lg:grid">
         {options.map((option) => {
           const isActive = option === value;

@@ -2,6 +2,19 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  BriefcaseBusiness,
+  Code2,
+  Layers3,
+  PackageCheck,
+  Palette,
+  PencilRuler,
+  Quote,
+  SearchCheck,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProjectVisual } from "@/components/project-visual";
@@ -10,6 +23,14 @@ import type { HomePageContent, PortfolioProject } from "@/content";
 type HomeExperienceProps = {
   home: HomePageContent;
 };
+
+const serviceIcons = {
+  "graphic-design": Palette,
+  "ui-ux-product-design": Layers3,
+  "web-development": Code2,
+};
+
+const processIcons = [SearchCheck, PencilRuler, Sparkles, PackageCheck];
 
 export function HomeExperience({ home }: HomeExperienceProps) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -92,22 +113,46 @@ export function HomeExperience({ home }: HomeExperienceProps) {
       const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
 
       if (hasFinePointer) {
-        const handleMouseMove = (event: MouseEvent) => {
-          const x = (event.clientX / window.innerWidth - 0.5) * 22;
-          const y = (event.clientY / window.innerHeight - 0.5) * 22;
+        const lineMovers = heroLines.map((line, index) => {
+          const duration = 0.44 + index * 0.04;
 
-          gsap.to(heroLines, {
-            x,
-            y: y * 0.4,
-            duration: 1.35,
-            stagger: 0.01,
-            ease: "power2.out",
+          return {
+            x: gsap.quickTo(line, "x", { duration, ease: "power2.out" }),
+            y: gsap.quickTo(line, "y", { duration, ease: "power2.out" }),
+          };
+        });
+        let latestX = 0;
+        let latestY = 0;
+        let pointerFrame = 0;
+
+        const handleMouseMove = (event: MouseEvent) => {
+          latestX = (event.clientX / window.innerWidth - 0.5) * 16;
+          latestY = (event.clientY / window.innerHeight - 0.5) * 7;
+
+          if (pointerFrame) {
+            return;
+          }
+
+          pointerFrame = window.requestAnimationFrame(() => {
+            pointerFrame = 0;
+
+            lineMovers.forEach((mover, index) => {
+              const depth = 1 - index * 0.08;
+
+              mover.x(latestX * depth);
+              mover.y(latestY * depth);
+            });
           });
         };
 
         window.addEventListener("mousemove", handleMouseMove);
-        cleanupMouse = () =>
+        cleanupMouse = () => {
+          if (pointerFrame) {
+            window.cancelAnimationFrame(pointerFrame);
+          }
+
           window.removeEventListener("mousemove", handleMouseMove);
+        };
       }
 
       gsap.to("[data-manifesto-word]", {
@@ -254,14 +299,16 @@ export function HomeExperience({ home }: HomeExperienceProps) {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href={home.primaryCtaLink}
-                  className="button-lift inline-flex min-h-12 items-center justify-center rounded-full bg-accent px-7 text-base font-semibold text-deep-navy hover:bg-surface-strong hover:text-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="button-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-7 text-base font-semibold text-deep-navy hover:bg-surface-strong hover:text-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
                   {home.primaryCtaText}
+                  <ArrowRight aria-hidden="true" className="h-5 w-5" />
                 </Link>
                 <Link
                   href={home.secondaryCtaLink}
-                  className="button-lift inline-flex min-h-12 items-center justify-center rounded-full border border-border px-7 text-base font-semibold text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                  className="button-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border px-7 text-base font-semibold text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                 >
+                  <BriefcaseBusiness aria-hidden="true" className="h-5 w-5" />
                   {home.secondaryCtaText}
                 </Link>
               </div>
@@ -343,34 +390,44 @@ export function HomeExperience({ home }: HomeExperienceProps) {
           </div>
 
           <div className="mt-12 grid gap-5 lg:grid-cols-3">
-            {home.featuredServices.map((service, index) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                data-home-reveal
-                className="cre8iq-glass-card group relative min-h-80 rounded-lg p-6 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              >
-                <div className="relative z-10 flex h-full flex-col justify-between">
-                  <div>
-                    <p className="cre8iq-faint-text font-heading text-4xl transition-colors duration-500 group-hover:text-accent">
-                      0{index + 1}
-                    </p>
-                    <p className="mt-8 text-sm font-semibold text-accent">
-                      {service.eyebrow}
-                    </p>
-                    <h3 className="mt-4 font-heading text-2xl font-semibold">
-                      {service.title}
-                    </h3>
+            {home.featuredServices.map((service, index) => {
+              const ServiceIcon =
+                serviceIcons[service.slug as keyof typeof serviceIcons] || Sparkles;
+
+              return (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  data-home-reveal
+                  className="cre8iq-glass-card group relative min-h-80 rounded-lg p-6 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                >
+                  <div className="relative z-10 flex h-full flex-col justify-between">
+                    <div>
+                      <div className="flex items-start justify-between gap-4">
+                        <p className="cre8iq-faint-text font-heading text-4xl transition-colors duration-500 group-hover:text-accent">
+                          0{index + 1}
+                        </p>
+                        <span className="grid h-12 w-12 place-items-center rounded-md border border-border bg-background/40 text-accent transition-colors duration-500 group-hover:border-accent group-hover:bg-accent group-hover:text-deep-navy">
+                          <ServiceIcon aria-hidden="true" className="h-6 w-6" />
+                        </span>
+                      </div>
+                      <p className="mt-8 text-sm font-semibold text-accent">
+                        {service.eyebrow}
+                      </p>
+                      <h3 className="mt-4 font-heading text-2xl font-semibold">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <div>
+                      <div className="mb-6 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-500 group-hover:scale-x-100" />
+                      <p className="text-base leading-7 text-muted transition-colors duration-500 group-hover:text-foreground">
+                        {service.summary}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <div className="mb-6 h-px w-full origin-left scale-x-0 bg-accent transition-transform duration-500 group-hover:scale-x-100" />
-                    <p className="text-base leading-7 text-muted transition-colors duration-500 group-hover:text-foreground">
-                      {service.summary}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -432,23 +489,32 @@ export function HomeExperience({ home }: HomeExperienceProps) {
           </div>
 
           <div className="mt-12 grid gap-4 md:grid-cols-4">
-            {home.processSteps.map((step, index) => (
-              <article
-                key={step.title}
-                data-home-reveal
-                className="cre8iq-glass-card rounded-lg p-6 transition-colors duration-500"
-              >
-                <p className="font-heading text-3xl font-semibold text-accent">
-                  0{index + 1}
-                </p>
-                <h3 className="mt-5 font-heading text-2xl font-semibold">
-                  {step.title}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-muted">
-                  {step.description}
-                </p>
-              </article>
-            ))}
+            {home.processSteps.map((step, index) => {
+              const ProcessIcon = processIcons[index] || Sparkles;
+
+              return (
+                <article
+                  key={step.title}
+                  data-home-reveal
+                  className="cre8iq-glass-card rounded-lg p-6 transition-colors duration-500"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="font-heading text-3xl font-semibold text-accent">
+                      0{index + 1}
+                    </p>
+                    <span className="grid h-11 w-11 place-items-center rounded-md border border-border bg-background/40 text-accent">
+                      <ProcessIcon aria-hidden="true" className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-heading text-2xl font-semibold">
+                    {step.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-muted">
+                    {step.description}
+                  </p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -468,6 +534,7 @@ export function HomeExperience({ home }: HomeExperienceProps) {
               className="cre8iq-glass-card rounded-lg p-7 sm:p-10"
             >
               <div ref={testimonialRef}>
+                <Quote aria-hidden="true" className="mb-6 h-9 w-9 text-accent" />
                 <blockquote className="font-heading text-2xl leading-tight text-foreground sm:text-3xl">
                   &ldquo;{activeQuote.quote}&rdquo;
                 </blockquote>
@@ -530,7 +597,10 @@ function WorkRow({
         {project.category}
       </p>
       <span className="relative z-10 text-sm font-semibold text-muted transition-colors duration-500 group-hover:text-foreground">
-        {project.year}
+        <span className="inline-flex items-center gap-2">
+          {project.year}
+          <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+        </span>
       </span>
     </Link>
   );

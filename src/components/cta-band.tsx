@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
@@ -85,8 +86,9 @@ export function CtaBand({
             <div className="mt-8">
               <Link
                 href={secondaryHref}
-                className="button-lift inline-flex min-h-12 items-center justify-center rounded-full border border-border px-6 text-base font-semibold text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="button-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border px-6 text-base font-semibold text-foreground hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
+                <Sparkles aria-hidden="true" className="h-5 w-5" />
                 {secondaryLabel}
               </Link>
             </div>
@@ -101,6 +103,10 @@ export function CtaBand({
             <span className="relative z-10 max-w-24 group-hover:text-pure-white">
               {primaryLabel}
             </span>
+            <ArrowRight
+              aria-hidden="true"
+              className="absolute bottom-9 right-9 z-10 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1 group-hover:text-pure-white"
+            />
           </Link>
         </div>
       </div>

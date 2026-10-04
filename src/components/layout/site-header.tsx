@@ -1,6 +1,16 @@
 "use client";
 
 import gsap from "gsap";
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  Home,
+  Layers3,
+  Menu,
+  Send,
+  UserRound,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -15,6 +25,14 @@ function isActiveLink(pathname: string, href: string) {
 
   return pathname === href || pathname.startsWith(`${href}/`);
 }
+
+const navIcons = {
+  "/": Home,
+  "/about": UserRound,
+  "/services": Layers3,
+  "/portfolio": BriefcaseBusiness,
+  "/contact": Send,
+};
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -44,7 +62,7 @@ export function SiteHeader() {
         <Link
           href="/"
           aria-label="Cre8iq home"
-          className="button-lift flex h-11 items-center rounded-full bg-pure-white px-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          className="button-lift flex h-11 items-center rounded-full  px-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           onClick={() => setIsMenuOpen(false)}
         >
           <BrandLogo className="h-auto w-24 sm:w-28" priority />
@@ -53,18 +71,20 @@ export function SiteHeader() {
         <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
           {siteConfig.navLinks.map((link) => {
             const isActive = isActiveLink(pathname, link.href);
+            const NavIcon = navIcons[link.href as keyof typeof navIcons];
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                   isActive
                     ? "border-border bg-surface text-foreground"
                     : "border-transparent text-muted hover:bg-surface hover:text-foreground"
                 }`}
               >
+                {NavIcon ? <NavIcon aria-hidden="true" className="h-4 w-4" /> : null}
                 {link.label}
               </Link>
             );
@@ -75,9 +95,10 @@ export function SiteHeader() {
           <ThemeToggle />
           <Link
             href="/contact"
-            className="button-lift inline-flex h-11 items-center justify-center rounded-full bg-accent px-5 text-sm font-semibold text-deep-navy hover:bg-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="button-lift inline-flex h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 text-sm font-semibold text-deep-navy hover:bg-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             Work with me
+            <ArrowRight aria-hidden="true" className="h-4 w-4" />
           </Link>
         </div>
 
@@ -89,23 +110,13 @@ export function SiteHeader() {
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsMenuOpen((current) => !current)}
-            className="button-lift flex h-11 w-11 flex-col items-center justify-center gap-1.5 rounded-full border border-border bg-surface hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="button-lift flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface hover:border-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
-            <span
-              className={`h-0.5 w-4 rounded-full bg-foreground transition-transform ${
-                isMenuOpen ? "translate-y-2 rotate-45" : ""
-              }`}
-            />
-            <span
-              className={`h-0.5 w-4 rounded-full bg-foreground transition-opacity ${
-                isMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`h-0.5 w-4 rounded-full bg-foreground transition-transform ${
-                isMenuOpen ? "-translate-y-2 -rotate-45" : ""
-              }`}
-            />
+            {isMenuOpen ? (
+              <X aria-hidden="true" className="h-5 w-5" />
+            ) : (
+              <Menu aria-hidden="true" className="h-5 w-5" />
+            )}
           </button>
         </div>
       </div>
@@ -119,6 +130,7 @@ export function SiteHeader() {
           <div className="grid gap-2">
             {siteConfig.navLinks.map((link) => {
               const isActive = isActiveLink(pathname, link.href);
+              const NavIcon = navIcons[link.href as keyof typeof navIcons];
 
               return (
                 <Link
@@ -126,12 +138,13 @@ export function SiteHeader() {
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`rounded-2xl px-4 py-3 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+                  className={`inline-flex items-center gap-3 rounded-2xl px-4 py-3 text-base font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                     isActive
                       ? "bg-surface text-foreground"
                       : "text-muted hover:bg-surface hover:text-foreground"
                   }`}
                 >
+                  {NavIcon ? <NavIcon aria-hidden="true" className="h-5 w-5" /> : null}
                   {link.label}
                 </Link>
               );
