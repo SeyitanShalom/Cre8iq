@@ -7,7 +7,7 @@ import {
   getPortfolioProjects,
   getService,
   getServices,
-} from "@/sanity/lib/content";
+} from "@/content";
 
 type ServicePageProps = {
   params: Promise<{
@@ -96,7 +96,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface">
+      <section className="border-y border-border">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-18 sm:px-10 lg:grid-cols-2 lg:px-14">
           <div>
             <p className="text-base font-semibold text-accent-strong dark:text-accent">

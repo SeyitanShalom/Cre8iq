@@ -16,7 +16,6 @@ const checks = [
     contentType: "text/html",
   },
   { path: "/contact", status: 200, contentType: "text/html" },
-  { path: "/studio", status: 200, contentType: "text/html" },
   { path: "/robots.txt", status: 200, contentType: "text/plain" },
   { path: "/sitemap.xml", status: 200, contentType: "application/xml" },
   { path: "/opengraph-image", status: 200, contentType: "image/png" },

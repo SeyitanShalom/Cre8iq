@@ -17,6 +17,17 @@ export type Testimonial = {
   featured?: boolean;
 };
 
+export type SiteService = {
+  title: string;
+  slug: string;
+  eyebrow: string;
+  summary: string;
+  description: string;
+  deliverables: string[];
+  process: string[];
+  featured?: boolean;
+};
+
 export const homepageStats: HomepageStat[] = [
   { value: "03", label: "Core creative disciplines" },
   { value: "06", label: "Projects shaping the first portfolio archive" },
@@ -53,8 +64,74 @@ export const tools = [
   "Next.js",
   "React",
   "Tailwind CSS",
-  "Sanity CMS",
+  "Local content files",
   "GSAP",
+];
+
+export const services: SiteService[] = [
+  {
+    title: "Graphic Design",
+    slug: "graphic-design",
+    eyebrow: "Visual identity and brand assets",
+    summary:
+      "Brand visuals, campaign assets, and polished creative systems for digital-first brands.",
+    description:
+      "I shape visual identities and everyday brand assets that help a business look intentional across social, digital, and presentation touchpoints.",
+    deliverables: [
+      "Logo direction and usage rules",
+      "Social media graphics",
+      "Pitch and presentation design",
+      "Campaign and launch visuals",
+    ],
+    process: [
+      "Clarify the brand mood and audience",
+      "Create visual directions",
+      "Refine the chosen system",
+      "Prepare usable final assets",
+    ],
+  },
+  {
+    title: "UI/UX Product Design",
+    slug: "ui-ux-product-design",
+    eyebrow: "Interfaces and product journeys",
+    summary:
+      "Clear journeys, refined interfaces, and product thinking for useful digital experiences.",
+    description:
+      "I design product screens and user flows that make digital experiences easier to understand, easier to trust, and easier to move through.",
+    deliverables: [
+      "User flows and wireframes",
+      "High-fidelity interface designs",
+      "Interactive prototypes",
+      "Design systems and UI components",
+    ],
+    process: [
+      "Map user goals and content needs",
+      "Sketch the flow and structure",
+      "Design polished screens",
+      "Prototype and refine interactions",
+    ],
+  },
+  {
+    title: "Web Development",
+    slug: "web-development",
+    eyebrow: "Premium responsive websites",
+    summary:
+      "Responsive websites built with care, performance, and a premium visual finish.",
+    description:
+      "I build websites that carry the design direction into a fast, responsive, and maintainable experience for real visitors.",
+    deliverables: [
+      "Responsive website builds",
+      "Portfolio and landing pages",
+      "Frontend implementation",
+      "Local content structures",
+    ],
+    process: [
+      "Plan the site structure",
+      "Build reusable sections",
+      "Connect content and interactions",
+      "Test, polish, and prepare for launch",
+    ],
+  },
 ];
 
 export const testimonials: Testimonial[] = [
@@ -238,7 +315,7 @@ export const sampleProjects: PortfolioProject[] = [
           points: [
             "Built content types for announcements, features, and testimonials",
             "Used simple type hierarchy to keep posts readable at small sizes",
-            "Created a layout pattern that can be extended later in the CMS",
+            "Created a layout pattern that can be extended through local content files",
           ],
         },
       ],
@@ -372,12 +449,12 @@ export const sampleProjects: PortfolioProject[] = [
     goals: [
       "Create a sharper first impression",
       "Make selected work easier to scan",
-      "Keep the build ready for future CMS content",
+      "Keep the build ready for future content updates",
     ],
     metrics: [
       { value: "05", label: "Responsive page views" },
       { value: "03", label: "Conversion paths" },
-      { value: "01", label: "CMS-ready structure" },
+      { value: "01", label: "Local content structure" },
     ],
     gallery: [
       {
@@ -409,7 +486,7 @@ export const sampleProjects: PortfolioProject[] = [
         "Responsive homepage and project archive",
         "Reusable page sections",
         "Contact CTA system",
-        "CMS-ready content structure notes",
+        "Local content structure notes",
       ],
       handoff: [
         "Reusable component structure",

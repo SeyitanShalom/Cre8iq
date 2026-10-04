@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
 import { PortfolioBrowser } from "@/components/portfolio-browser";
 import { SectionIntro } from "@/components/section-intro";
+import { getPortfolioProjects } from "@/content";
 import {
   getProjectCategories,
   getProjectServices,
-} from "@/lib/placeholder-content";
-import { getPortfolioProjects } from "@/sanity/lib/content";
+} from "@/content/local-content";
 
 export const metadata: Metadata = {
   title: "Portfolio",

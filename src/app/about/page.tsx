@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
 import { SectionIntro } from "@/components/section-intro";
-import { processSteps, tools } from "@/lib/placeholder-content";
+import { processSteps, tools } from "@/content/local-content";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -58,7 +58,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface">
+      <section className="border-y border-border">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-18 sm:px-10 lg:grid-cols-[0.7fr_1.3fr] lg:px-14">
           <div>
             <p className="text-base font-semibold text-accent-strong dark:text-accent">
@@ -129,7 +129,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-border bg-surface">
+      <section className="border-t border-border">
         <div className="mx-auto w-full max-w-7xl px-6 py-18 sm:px-10 lg:px-14">
           <p className="text-base font-semibold text-accent-strong dark:text-accent">
             Tools

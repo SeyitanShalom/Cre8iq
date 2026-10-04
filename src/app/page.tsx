@@ -1,6 +1,6 @@
 import { CtaBand } from "@/components/cta-band";
 import { HomeExperience } from "@/components/home/home-experience";
-import { getHomePageContent } from "@/sanity/lib/content";
+import { getHomePageContent } from "@/content";
 
 export default async function Home() {
   const home = await getHomePageContent();

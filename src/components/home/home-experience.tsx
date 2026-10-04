@@ -5,8 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ProjectVisual } from "@/components/project-visual";
-import type { PortfolioProject } from "@/lib/placeholder-content";
-import type { HomePageContent } from "@/sanity/lib/content";
+import type { HomePageContent, PortfolioProject } from "@/content";
 
 type HomeExperienceProps = {
   home: HomePageContent;
@@ -14,7 +13,6 @@ type HomeExperienceProps = {
 
 export function HomeExperience({ home }: HomeExperienceProps) {
   const rootRef = useRef<HTMLDivElement>(null);
-  const heroFieldRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const testimonialRef = useRef<HTMLDivElement>(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -64,18 +62,11 @@ export function HomeExperience({ home }: HomeExperienceProps) {
       const heroLines = gsap.utils.toArray<HTMLElement>("[data-hero-line]");
       const heroCopy = gsap.utils.toArray<HTMLElement>("[data-hero-copy]");
 
-      gsap.set(heroFieldRef.current, { autoAlpha: 0, scale: 1.05 });
       gsap.set(heroLines, { yPercent: 120, rotate: 2 });
       gsap.set(heroCopy, { autoAlpha: 0, y: 24 });
 
       gsap
         .timeline({ delay: 0.18 })
-        .to(heroFieldRef.current, {
-          autoAlpha: 0.7,
-          scale: 1,
-          duration: 2.3,
-          ease: "power2.out",
-        })
         .to(
           heroLines,
           {
@@ -85,7 +76,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
             stagger: 0.09,
             ease: "expo.out",
           },
-          "-=1.45",
         )
         .to(
           heroCopy,
@@ -96,7 +86,7 @@ export function HomeExperience({ home }: HomeExperienceProps) {
             stagger: 0.08,
             ease: "power3.out",
           },
-          "-=0.75",
+          "-=0.55",
         );
 
       const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
@@ -106,12 +96,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
           const x = (event.clientX / window.innerWidth - 0.5) * 22;
           const y = (event.clientY / window.innerHeight - 0.5) * 22;
 
-          gsap.to(heroFieldRef.current, {
-            x: x * -1,
-            y: y * -1,
-            duration: 1.8,
-            ease: "power2.out",
-          });
           gsap.to(heroLines, {
             x,
             y: y * 0.4,
@@ -234,17 +218,8 @@ export function HomeExperience({ home }: HomeExperienceProps) {
   }, [activeTestimonial]);
 
   return (
-    <div ref={rootRef} className="cre8iq-aurora bg-background text-foreground">
+    <div ref={rootRef} className="text-foreground">
       <section className="relative flex min-h-screen items-center overflow-hidden px-6 pb-14 pt-32 sm:px-10 lg:px-14">
-        <div className="cre8iq-gradient-ribbon absolute left-1/2 top-24 z-0 h-40 w-[80rem] max-w-[140vw] -translate-x-1/2" />
-        <div
-          ref={heroFieldRef}
-          className="cre8iq-hero-field absolute -inset-12 z-0 will-change-transform"
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/20 to-background" />
-        </div>
-        <div className="cre8iq-grid-field absolute inset-0 z-0 opacity-25" />
-
         <div className="relative z-10 mx-auto flex min-h-[calc(100vh-12rem)] w-full max-w-7xl flex-col justify-between">
           <div>
             <div data-hero-copy className="flex flex-wrap items-center gap-3">
@@ -320,7 +295,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
         data-manifesto
         className="relative overflow-hidden border-t border-border px-6 py-24 sm:px-10 md:py-32 lg:px-14"
       >
-        <div className="cre8iq-gradient-ribbon absolute left-1/2 top-12 h-32 w-[72rem] max-w-[140vw] -translate-x-1/2 opacity-60" />
         <div className="relative z-10 mx-auto max-w-6xl text-center">
           <p className="mb-12 text-xs font-semibold uppercase text-muted">
             Manifesto
@@ -336,7 +310,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
       </section>
 
       <section className="relative overflow-hidden border-t border-border py-16">
-        <div className="cre8iq-gradient-ribbon absolute inset-x-0 top-1/2 h-24 -translate-y-1/2 opacity-50" />
         <p className="relative z-10 mb-10 text-center text-xs font-semibold uppercase text-muted">
           Creative range
         </p>
@@ -361,7 +334,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
         id="services"
         className="relative overflow-hidden border-t border-border px-6 py-24 sm:px-10 md:py-32 lg:px-14"
       >
-        <div className="cre8iq-gradient-ribbon absolute -right-24 top-20 h-44 w-[42rem] rotate-6 opacity-55" />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div data-home-reveal className="max-w-3xl">
             <p className="text-sm font-semibold text-accent">Services</p>
@@ -378,7 +350,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
                 data-home-reveal
                 className="cre8iq-glass-card group relative min-h-80 rounded-lg p-6 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
               >
-                <div className="absolute inset-0 cre8iq-grid-field opacity-0 transition-opacity duration-500 group-hover:opacity-20" />
                 <div className="relative z-10 flex h-full flex-col justify-between">
                   <div>
                     <p className="cre8iq-faint-text font-heading text-4xl transition-colors duration-500 group-hover:text-accent">
@@ -408,7 +379,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
         id="work"
         className="relative overflow-hidden border-t border-border px-6 py-24 sm:px-10 md:py-32 lg:px-14"
       >
-        <div className="cre8iq-gradient-ribbon absolute -left-32 bottom-24 h-36 w-[44rem] -rotate-6 opacity-45" />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div
             data-home-reveal
@@ -453,7 +423,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
       </section>
 
       <section className="relative overflow-hidden border-t border-border px-6 py-24 sm:px-10 md:py-32 lg:px-14">
-        <div className="cre8iq-gradient-ribbon absolute right-0 top-10 h-32 w-[38rem] opacity-40" />
         <div className="relative z-10 mx-auto max-w-7xl">
           <div data-home-reveal className="max-w-3xl">
             <p className="text-sm font-semibold text-accent">My process</p>
@@ -486,7 +455,6 @@ export function HomeExperience({ home }: HomeExperienceProps) {
 
       {activeQuote ? (
         <section className="relative overflow-hidden border-t border-border px-6 py-24 sm:px-10 md:py-32 lg:px-14">
-          <div className="cre8iq-gradient-ribbon absolute left-1/2 top-1/2 h-36 w-[60rem] -translate-x-1/2 -translate-y-1/2 opacity-50" />
           <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-center">
             <div data-home-reveal>
               <p className="text-sm font-semibold text-accent">Testimonials</p>

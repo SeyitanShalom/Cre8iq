@@ -6,12 +6,12 @@ import { ProjectCard } from "@/components/project-card";
 import { ProjectGallery } from "@/components/project-gallery";
 import { ProjectVisual } from "@/components/project-visual";
 import { defaultSeo } from "@/lib/seo";
-import type { PortfolioProject } from "@/lib/placeholder-content";
 import {
   getPortfolioProjects,
   getProject,
   getRelatedProjects,
-} from "@/sanity/lib/content";
+  type PortfolioProject,
+} from "@/content";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -121,7 +121,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         />
       </section>
 
-      <section className="border-y border-border bg-surface">
+      <section className="border-y border-border">
         <div className="mx-auto grid w-full max-w-7xl gap-8 px-6 py-14 sm:px-10 lg:grid-cols-4 lg:px-14">
           <NarrativeBlock title="Overview" body={project.overview} />
           <NarrativeBlock title="Challenge" body={project.challenge} />
@@ -163,7 +163,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         <SimpleProjectLayout project={project} />
       )}
 
-      <section className="border-t border-border bg-surface">
+      <section className="border-t border-border">
         <div className="mx-auto w-full max-w-7xl px-6 py-18 sm:px-10 lg:px-14">
           <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
             <div className="max-w-3xl">

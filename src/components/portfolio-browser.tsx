@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ProjectCard } from "@/components/project-card";
-import type { PortfolioProject } from "@/lib/placeholder-content";
+import type { PortfolioProject } from "@/content";
 
 const allFilter = "All";
 
@@ -100,8 +100,8 @@ export function PortfolioBrowser({
               No projects match those filters yet.
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-7 text-muted">
-              The CMS phase will make this archive easier to expand. For now,
-              clear one filter to browse the current sample work.
+              The local content files make this archive easy to expand. For
+              now, clear one filter to browse the current sample work.
             </p>
           </div>
         )}

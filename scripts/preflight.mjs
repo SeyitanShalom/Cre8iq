@@ -2,15 +2,10 @@ import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 const root = process.cwd();
-const requiredEnv = [
-  "NEXT_PUBLIC_SANITY_PROJECT_ID",
-  "NEXT_PUBLIC_SANITY_DATASET",
-  "NEXT_PUBLIC_SANITY_API_VERSION",
-  "NEXT_PUBLIC_SITE_URL",
-];
+const requiredEnv = ["NEXT_PUBLIC_SITE_URL"];
 const requiredFiles = [
   "public/images/cre8iq-logo.png",
-  "src/app/studio/[[...tool]]/page.tsx",
+  "src/content/local-content.ts",
   "src/app/sitemap.ts",
   "src/app/robots.ts",
   "src/app/opengraph-image.tsx",

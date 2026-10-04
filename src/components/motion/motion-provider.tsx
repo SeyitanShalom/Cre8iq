@@ -2,7 +2,6 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
@@ -16,30 +15,6 @@ export function MotionProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-  }, []);
-
-  useEffect(() => {
-    if (prefersReducedMotion()) {
-      return;
-    }
-
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (time: number) => Math.min(1, 1.001 - 2 ** (-10 * time)),
-      smoothWheel: true,
-      touchMultiplier: 1.4,
-      wheelMultiplier: 0.88,
-    });
-    const tick = (time: number) => lenis.raf(time * 1000);
-
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-
-    return () => {
-      gsap.ticker.remove(tick);
-      lenis.destroy();
-    };
   }, []);
 
   useEffect(() => {

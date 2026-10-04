@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
 import { SectionIntro } from "@/components/section-intro";
-import { getServices } from "@/sanity/lib/content";
+import { getServices } from "@/content";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -80,7 +80,7 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-surface">
+      <section className="border-y border-border">
         <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-18 sm:px-10 lg:grid-cols-3 lg:px-14">
           <div className="interactive-card rounded-lg border border-transparent p-1">
             <p className="text-base font-semibold text-accent-strong dark:text-accent">

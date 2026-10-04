@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
-import type { ProjectVisualType } from "@/lib/placeholder-content";
+import type { ProjectVisualType } from "@/content";
 
 type ProjectVisualProps = {
   title: string;

@@ -11,7 +11,7 @@ This README is the living project brief. It should be updated at the end of ever
 - Present services clearly.
 - Showcase graphic design, UI/UX/product design, and web development projects.
 - Build trust around Cre8iq as a premium personal creative brand.
-- Allow portfolio content to be managed through a CMS without editing code.
+- Allow portfolio content to be managed through local content files without a third-party service.
 
 ## Brand Direction
 
@@ -60,10 +60,10 @@ Optional future pages:
 - Theme should follow the visitor's system setting by default.
 - Manual theme toggle should be available.
 - Theme preference should be saved after the visitor changes it.
-- CMS-managed portfolio projects.
-- CMS-managed services.
-- CMS-managed testimonials.
-- CMS-managed homepage featured content.
+- Local-file managed portfolio projects.
+- Local-file managed services.
+- Local-file managed testimonials.
+- Local-file managed homepage featured content.
 - Portfolio filtering by category/service.
 - Project pages should support both simple portfolio entries and full case studies.
 - Contact form or contact CTA.
@@ -92,7 +92,7 @@ Initial test content should include:
 - 2-3 sample testimonials.
 - Homepage hero and featured content.
 
-The test content should be easy to replace from the CMS later.
+The test content should be easy to replace from the local content files later.
 
 ## Recommended Tech Stack
 
@@ -101,15 +101,15 @@ The current project is already a Next.js app.
 - Frontend: Next.js
 - Language: TypeScript
 - Styling: Tailwind CSS
-- CMS: Sanity
+- Content: Local TypeScript content files
 - Animations: Framer Motion
 - Deployment target: Vercel
-- Media: Sanity image CDN
+- Media: Local/public assets with Next image optimization
 - Contact handling: To be decided later, likely Resend, Formspree, or a serverless endpoint
 
-## CMS Requirements
+## Local Content Requirements
 
-The CMS should manage portfolio projects, services, testimonials, and homepage featured content.
+The local content system should manage portfolio projects, services, testimonials, and homepage featured content.
 
 ### Project Model
 
@@ -197,7 +197,7 @@ Goals:
 - Confirm the project purpose.
 - Confirm brand direction, colors, typography, and tone.
 - Confirm website pages and core features.
-- Confirm CMS scope.
+- Confirm local content scope.
 - Create this README as the living project brief.
 
 Exit criteria:
@@ -321,7 +321,7 @@ Exit criteria:
 
 Completed notes:
 
-- Expanded the placeholder portfolio data into a CMS-ready project model with project format, goals, metrics, galleries, simple-project handoff details, and full case-study sections.
+- Expanded the placeholder portfolio data into a content-ready project model with project format, goals, metrics, galleries, simple-project handoff details, and full case-study sections.
 - Added an interactive portfolio browser with filtering by discipline/category and service.
 - Added portfolio archive counts, active filter states, clear filter behavior, and an empty-result state.
 - Upgraded project cards with format labels, client/role context, service tags, and richer project previews.
@@ -333,44 +333,38 @@ Completed notes:
 - Verified with `npm.cmd run build`.
 - Smoke-tested production routes at `http://localhost:3000` for the portfolio index, one case study, and one simple project.
 
-### Phase 5: CMS Integration
+### Phase 5: Local Content System
 
 Status: Completed
 
 Goals:
 
-- Add Sanity CMS.
-- Create CMS schemas for projects, services, testimonials, and homepage content.
-- Replace test data with CMS-driven content.
-- Configure Sanity image handling.
+- Create a local content source for projects, services, testimonials, and homepage content.
+- Replace hardcoded page content with shared content getters.
+- Keep content editable from the codebase without a third-party service.
+- Support optional local project and gallery images.
 
 Exit criteria:
 
-- Content can be created and edited from Sanity.
-- Website pages read the correct data from the CMS.
-- Test content can be replaced without code changes.
+- Content can be edited in local TypeScript files.
+- Website pages read the correct data from the local content layer.
+- Test content can be replaced from one documented content area.
 
 Completed notes:
 
-- Installed the official Sanity/Next integration packages: `next-sanity`, `sanity`, `@sanity/image-url`, and `@sanity/vision`.
-- Added Sanity configuration files: `sanity.config.ts`, `sanity.cli.ts`, and `.env.local.example`.
-- Added an embedded Studio route at `/studio`.
-- Added CMS schemas for projects, services, testimonials, and homepage content.
-- Added project fields for simple entries, full case studies, galleries, featured images, services, tools, links, and SEO metadata.
-- Added service, testimonial, and homepage featured-content schemas.
-- Added a Sanity client, image URL helper, GROQ queries, normalizers, and fallback handling.
-- Updated the Home, Services, Service Detail, Portfolio, and Project Detail pages to read through the CMS data layer.
-- Kept polished test data as a safe fallback until real Sanity environment variables and content are available.
-- Configured Sanity CDN image support in `next.config.ts`.
-- Updated project visuals and galleries so CMS images render when available, while generated mockups remain as fallback previews.
+- Added a local content layer under `src/content`.
+- Moved services, testimonials, homepage support content, and sample projects into editable local content exports.
+- Added content getters for projects, services, testimonials, homepage content, related projects, and detail lookups.
+- Updated the Home, Services, Service Detail, Portfolio, Project Detail, and sitemap routes to read through the local content layer.
+- Kept generated project mockups as fallback previews when no local image is provided.
 - Verified with `npm.cmd run lint`.
 - Verified with `npm.cmd run build`.
-- Smoke-tested production routes at `http://localhost:3000` for Home, Portfolio, Project Detail, Services, Service Detail, and Studio.
+- Smoke-tested production routes at `http://localhost:3000` for Home, Portfolio, Project Detail, Services, and Service Detail.
 
 Needs attention:
 
-- A real Sanity project ID and dataset must be added to `.env.local` before the Studio can manage live content.
-- npm reported dependency audit findings after installing Sanity packages; these were not auto-fixed to avoid broad dependency churn.
+- Replace sample projects and testimonials with real content in `src/content/local-content.ts`.
+- Replace the placeholder resume/CV file before launch.
 
 ### Phase 6: Motion, Polish, and Interaction
 
@@ -399,7 +393,7 @@ Completed notes:
 - Improved empty/fallback presentation for portfolio filtering and missing pages.
 - Verified with `npm.cmd run lint`.
 - Verified with `npm.cmd run build`.
-- Smoke-tested production routes on `http://localhost:3001` for Home, About, Portfolio, Project Detail, Services, Service Detail, Contact, Studio, and a 404 route.
+- Smoke-tested production routes on `http://localhost:3001` for Home, About, Portfolio, Project Detail, Services, Service Detail, Contact, and a 404 route.
 
 ### Phase 7: SEO, Accessibility, and Performance
 
@@ -426,18 +420,18 @@ Completed notes:
 - Expanded global metadata with metadata base, title template, authorship, canonical URL, robots rules, Open Graph, and Twitter card defaults.
 - Added Person and WebSite JSON-LD structured data.
 - Added a generated Open Graph image route at `/opengraph-image`.
-- Added `robots.txt` via `src/app/robots.ts`, disallowing `/studio`.
+- Added `robots.txt` via `src/app/robots.ts`.
 - Added `sitemap.xml` via `src/app/sitemap.ts`, including static pages, service detail pages, and project detail pages.
 - Added dynamic metadata for service detail pages.
 - Improved project detail metadata with canonical URLs, Open Graph images, and Twitter cards.
 - Fixed page title templates so child pages do not duplicate `Cre8iq`.
 - Added `NEXT_PUBLIC_SITE_URL` to `.env.local.example` for production canonical URLs and sitemap output.
-- Added request-level caching around CMS content helpers.
+- Added request-level caching around content helpers.
 - Added image priority and quality controls for featured/project hero images.
 - Checked core brand color contrast pairs; all tested pairs passed WCAG AA contrast thresholds for normal text.
 - Verified with `npm.cmd run lint`.
 - Verified with `npm.cmd run build`.
-- Smoke-tested production routes on `http://localhost:3002` for core pages, detail pages, Studio, `robots.txt`, `sitemap.xml`, and `opengraph-image`.
+- Smoke-tested production routes on `http://localhost:3002` for core pages, detail pages, `robots.txt`, `sitemap.xml`, and `opengraph-image`.
 
 ### Phase 8: Testing and Deployment Preparation
 
@@ -446,7 +440,7 @@ Status: Completed
 Goals:
 
 - Run lint/build checks.
-- Test CMS data flow.
+- Test local content data flow.
 - Test contact links and forms.
 - Test responsiveness.
 - Prepare deployment environment variables.
@@ -463,13 +457,11 @@ Completed notes:
 - Added repeatable verification scripts:
   - `npm run check` for lint plus production build.
   - `npm run preflight` for deployment environment and required-file checks.
-  - `npm run smoke` for route, SEO endpoint, and Studio smoke checks against a running site.
+  - `npm run smoke` for route and SEO endpoint smoke checks against a running site.
 - Added `scripts/preflight.mjs` to check required public env vars, required deployment files, contact config, ignored env files, and placeholder asset warnings.
-- Added `scripts/smoke-test.mjs` to verify Home, About, Services, Service Detail, Portfolio, Project Detail, Contact, Studio, `robots.txt`, `sitemap.xml`, and `opengraph-image`.
-- Added `DEPLOYMENT.md` with Vercel environment variables, Sanity CORS requirements, local checks, deployed smoke-test command, and known launch blockers.
+- Added `scripts/smoke-test.mjs` to verify Home, About, Services, Service Detail, Portfolio, Project Detail, Contact, `robots.txt`, `sitemap.xml`, and `opengraph-image`.
+- Added `DEPLOYMENT.md` with Vercel environment variables, local checks, deployed smoke-test command, and known launch blockers.
 - Added `NEXT_PUBLIC_SITE_URL=http://localhost:3000` to the local env file for local canonical/sitemap testing.
-- Verified Sanity API connectivity for the configured project and dataset; the API responded successfully.
-- Confirmed the configured Sanity dataset currently has `0` homepage, project, service, and testimonial documents, so fallback content remains active until CMS content is added.
 - Verified contact configuration through preflight checks.
 - Verified with `npm.cmd run preflight`.
 - Verified with `npm.cmd run check`.
@@ -478,35 +470,51 @@ Completed notes:
 Needs attention before launch:
 
 - Set `NEXT_PUBLIC_SITE_URL` to the final production domain in Vercel.
-- Add the production domain to Sanity CORS with credentials enabled.
 - Replace the placeholder resume/CV file.
-- Add real projects, services, testimonials, and homepage content in Sanity.
+- Add real projects, services, testimonials, and homepage content in `src/content/local-content.ts`.
 - Add social links when available.
 - Decide whether email/WhatsApp CTAs are enough or a full contact form provider is needed.
 
 ### Phase 9: Deployment and Handover
 
-Status: Not started
+Status: In progress
 
 Goals:
 
 - Deploy the website.
 - Confirm production behavior.
-- Document CMS usage basics.
+- Document local content editing basics.
 - Document how to update projects, services, testimonials, and homepage content.
 - Update README with final launch notes.
 
 Exit criteria:
 
 - Live site is available.
-- CMS workflow is documented.
+- Local content workflow is documented.
 - User can update portfolio content independently.
+
+Completed notes:
+
+- Added `CONTENT_GUIDE.md` with local editing basics for services, projects, testimonials, homepage content, images, and smoke testing.
+- Expanded `DEPLOYMENT.md` with Phase 9 handover checks for local content, resume replacement, production env vars, and deployed route verification.
+- Added a theme-aware sonar-grid background inspired by the 21st.dev reference, tuned for Cre8iq brand colors in light and dark mode.
+- Blended the sonar treatment with the existing aurora, glassmorphism, and page background layers.
+
+Needs attention before Phase 9 completion:
+
+- Deploy to the final hosting target after the production URL is confirmed.
+- Set `NEXT_PUBLIC_SITE_URL` to the final production domain.
+- Add real services, projects, testimonials, and homepage content in `src/content/local-content.ts`.
+- Replace the placeholder resume/CV file.
+- Add social links when available.
+- Decide whether email/WhatsApp CTAs are enough or a full contact form provider is needed.
+- Run `npm run preflight`, `npm run check`, and deployed `npm run smoke` after production env vars and content are ready.
 
 ## Phase Log
 
 ### 2026-10-02: Phase 0 Started
 
-- Confirmed the brand name, purpose, colors, fonts, tone, contact details, pages, theme behavior, CMS scope, and portfolio content requirements.
+- Confirmed the brand name, purpose, colors, fonts, tone, contact details, pages, theme behavior, local content scope, and portfolio content requirements.
 - Created the first version of the living README project brief.
 - User approved moving from planning into implementation.
 
@@ -551,17 +559,15 @@ Exit criteria:
 
 ### 2026-10-02: Phase 5 Completed
 
-- Integrated Sanity CMS into the Next.js app.
-- Added the embedded Studio route at `/studio`.
-- Added schemas for projects, services, testimonials, and homepage content.
-- Added CMS data fetching with GROQ, normalization, and local fallback content.
-- Updated the main content pages and detail pages to read from the CMS data layer.
-- Added Sanity image URL handling and Sanity CDN image support.
-- Added `.env.local.example` for the required Sanity environment variables.
+- Added the local content layer under `src/content`.
+- Added editable data for projects, services, testimonials, homepage content, process steps, and tools.
+- Added local content getters for list pages, detail pages, homepage sections, related projects, and sitemap output.
+- Updated the main content pages and detail pages to read from the local content layer.
+- Updated `.env.local.example` so only `NEXT_PUBLIC_SITE_URL` is required for public metadata.
 - Lint passed with `npm.cmd run lint`.
 - Production build passed with `npm.cmd run build`.
-- Production route checks returned `200` for `/`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, `/services/graphic-design`, and `/studio`.
-- A real Sanity project ID and dataset still need to be configured before live CMS editing replaces the fallback content.
+- Production route checks returned `200` for `/`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, and `/services/graphic-design`.
+- Real project and testimonial content still need to replace the sample local content before launch.
 
 ### 2026-10-02: Phase 6 Completed
 
@@ -572,7 +578,7 @@ Exit criteria:
 - Kept motion respectful of reduced-motion preferences.
 - Lint passed with `npm.cmd run lint`.
 - Production build passed with `npm.cmd run build`.
-- Production route checks on port `3001` returned `200` for `/`, `/about`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, `/services/graphic-design`, `/contact`, and `/studio`; the test missing route returned `404` as expected.
+- Production route checks on port `3001` returned `200` for `/`, `/about`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, `/services/graphic-design`, and `/contact`; the test missing route returned `404` as expected.
 
 ### 2026-10-02: Phase 7 Completed
 
@@ -580,24 +586,30 @@ Exit criteria:
 - Added generated `/opengraph-image`, `/robots.txt`, and `/sitemap.xml` routes.
 - Added dynamic service detail metadata and improved project detail metadata.
 - Added `NEXT_PUBLIC_SITE_URL` to `.env.local.example` for production URL configuration.
-- Added request-level caching around CMS data helpers.
-- Added priority/quality controls for important CMS project images.
+- Added request-level caching around content helpers.
+- Added priority/quality controls for important project images.
 - Checked core light/dark brand color contrast pairs; tested pairs passed WCAG AA thresholds.
 - Lint passed with `npm.cmd run lint`.
 - Production build passed with `npm.cmd run build`.
-- Production route checks on port `3002` returned `200` for `/`, `/about`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, `/services/graphic-design`, `/contact`, `/studio`, `/robots.txt`, `/sitemap.xml`, and `/opengraph-image`.
+- Production route checks on port `3002` returned `200` for `/`, `/about`, `/portfolio`, `/portfolio/aurelia-brand-refresh`, `/services`, `/services/graphic-design`, `/contact`, `/robots.txt`, `/sitemap.xml`, and `/opengraph-image`.
 
 ### 2026-10-02: Phase 8 Completed
 
 - Added deployment-prep helper scripts for preflight checks and smoke testing.
 - Added `npm run check`, `npm run preflight`, and `npm run smoke`.
-- Added `DEPLOYMENT.md` with Vercel, Sanity, and smoke-test instructions.
+- Added `DEPLOYMENT.md` with Vercel and smoke-test instructions.
 - Added `NEXT_PUBLIC_SITE_URL=http://localhost:3000` to `.env.local` for local metadata and sitemap checks.
-- Sanity API connectivity returned `200` for the configured project and dataset.
-- Sanity content counts are currently `0` for homepage, projects, services, and testimonials, so fallback content remains active.
 - Preflight passed with warnings for local `NEXT_PUBLIC_SITE_URL` and the placeholder resume/CV.
 - Lint and production build passed with `npm.cmd run check`.
 - Production smoke test on port `3003` passed for all configured smoke routes and SEO endpoints.
+
+### 2026-10-03: Phase 9 Started
+
+- Added a theme-aware sonar-grid background layer using the Cre8iq brand colors in light and dark mode.
+- Tuned the global aurora and glassmorphism layers so the new background blends across the site.
+- Added `CONTENT_GUIDE.md` with handover instructions for updating services, projects, testimonials, and homepage content in local files.
+- Expanded `DEPLOYMENT.md` with Phase 9 handover checks and deployed smoke-test guidance.
+- Updated Phase 9 status to in progress because the final production URL, live content, resume/CV, social links, and contact-form decision are still pending.
 
 ## Open Decisions
 
@@ -623,4 +635,3 @@ npm run lint
 ## Development Troubleshooting
 
 - If `npm run dev` says another Next dev server is already running, use the existing `http://localhost:3000` server or stop the listed PID before starting a new one.
-- If a Sanity fetch shows `EACCES` in this sandboxed environment, it means outbound network access was blocked during the check. The app falls back to local content, and a normal local machine with internet access should be able to reach Sanity.

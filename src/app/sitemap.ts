@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
+import { getPortfolioProjects, getServices } from "@/content";
 import { siteConfig } from "@/lib/site";
 import { absoluteUrl } from "@/lib/seo";
-import { getPortfolioProjects, getServices } from "@/sanity/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [projects, services] = await Promise.all([

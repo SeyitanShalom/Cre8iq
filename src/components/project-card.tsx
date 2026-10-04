@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ProjectVisual } from "@/components/project-visual";
-import type { PortfolioProject } from "@/lib/placeholder-content";
+import type { PortfolioProject } from "@/content";
 
 type ProjectCardProps = {
   project: PortfolioProject;

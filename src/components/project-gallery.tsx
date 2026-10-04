@@ -1,5 +1,5 @@
 import { ProjectVisual } from "@/components/project-visual";
-import type { PortfolioProject } from "@/lib/placeholder-content";
+import type { PortfolioProject } from "@/content";
 
 type ProjectGalleryProps = {
   project: PortfolioProject;

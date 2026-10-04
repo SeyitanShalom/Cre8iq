@@ -1,4 +1,9 @@
+"use client";
+
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 
 type CtaBandProps = {
   eyebrow: string;
@@ -19,12 +24,56 @@ export function CtaBand({
   secondaryHref,
   secondaryLabel,
 }: CtaBandProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const revealItems = gsap.utils.toArray<HTMLElement>(
+      "[data-cta-reveal]",
+      section,
+    );
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(revealItems, { autoAlpha: 1, y: 0 });
+      return;
+    }
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        revealItems,
+        { autoAlpha: 0, y: 28 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 86%",
+            once: true,
+          },
+        },
+      );
+    }, section);
+
+    return () => context.revert();
+  }, []);
+
   return (
-    <section className="cre8iq-aurora-soft relative overflow-hidden border-t border-border bg-background text-foreground">
-      <div className="cre8iq-grid-field absolute inset-0 opacity-20" />
-      <div className="cre8iq-gradient-ribbon absolute left-1/2 top-1/2 h-40 w-[72rem] max-w-[150vw] -translate-x-1/2 -translate-y-1/2 opacity-65" />
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden border-t border-border text-foreground"
+    >
       <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 px-6 py-24 sm:px-10 lg:grid-cols-[1fr_0.42fr] lg:items-center lg:px-14">
-        <div data-gsap-reveal>
+        <div data-cta-reveal>
           <p className="text-sm font-semibold text-accent">{eyebrow}</p>
           <h2 className="mt-4 max-w-4xl font-heading text-3xl font-semibold leading-tight sm:text-4xl">
             {title}
@@ -43,7 +92,7 @@ export function CtaBand({
             </div>
           ) : null}
         </div>
-        <div data-gsap-reveal className="flex lg:justify-end">
+        <div data-cta-reveal className="flex lg:justify-end">
           <Link
             href={primaryHref}
             className="group relative flex h-36 w-36 items-center justify-center overflow-hidden rounded-full bg-accent text-center text-base font-semibold text-deep-navy transition-transform duration-500 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent md:h-44 md:w-44"
