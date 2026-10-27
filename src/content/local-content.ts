@@ -161,7 +161,6 @@ export type ProjectVisualType =
   | "brand-system"
   | "dashboard"
   | "website"
-  | "social-kit"
   | "mobile-app"
   | "landing-page";
 
