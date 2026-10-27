@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CtaBand } from "@/components/cta-band";
@@ -108,6 +109,18 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <MetaBlock label="Role" value={project.role} />
             <MetaBlock label="Primary service" value={project.services[0]} />
           </div>
+
+          {project.websiteUrl ? (
+            <a
+              href={project.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-lift mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-accent px-6 text-base font-semibold text-deep-navy hover:bg-accent-strong hover:text-pure-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            >
+              Visit live website
+              <ExternalLink aria-hidden="true" className="h-4 w-4" />
+            </a>
+          ) : null}
         </div>
 
         <ProjectVisual

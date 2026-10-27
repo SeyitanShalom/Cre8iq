@@ -33,7 +33,7 @@ export function getPersonJsonLd() {
     jobTitle: "Graphic designer, UI/UX product designer, and web developer",
     knowsAbout: [
       "Graphic Design",
-      "UI/UX Product Design",
+      "UI/UX Design",
       "Web Development",
       "Brand Direction",
       "Frontend Development",

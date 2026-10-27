@@ -4,11 +4,17 @@
 
 :root {
   --brand-navy: #001224;
+  --brand-light-navy: #2a527a;
   --brand-teal: #00acb5;
   --brand-deep-teal: #00575c;
   --brand-ice: #e3feff;
   --brand-white: #ffffff;
-  --background: var(--brand-navy);
+  --background: #080e1d;
+  --gradient-teal: color-mix(
+    in srgb,
+    var(--brand-teal) 60%,
+    var(--brand-deep-teal) 40%
+  );
   --foreground: var(--brand-white);
   --surface: color-mix(in srgb, var(--brand-navy) 88%, var(--brand-deep-teal));
   --surface-strong: var(--brand-deep-teal);
@@ -18,16 +24,16 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: #ffffff;
-  --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+  --doodle-line: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 64%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-teal) 32%, transparent);
   --doodle-opacity: 0.86;
   --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
   --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
   --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
   --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
   --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
-  --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
+  --glass-tint: color-mix(in srgb, var(--gradient-teal) 13%, transparent);
   color-scheme: dark;
 }
 
@@ -42,21 +48,21 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: var(--brand-white);
-  --doodle-line: color-mix(in srgb, var(--brand-deep-teal) 28%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 42%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-navy) 18%, transparent);
+  --doodle-line: color-mix(in srgb, var(--brand-teal) 50%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 60%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-teal) 30%, transparent);
   --doodle-opacity: 0.66;
   --glass-fill: color-mix(in srgb, var(--surface) 76%, transparent);
   --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 46%, var(--surface));
   --glass-highlight: color-mix(in srgb, var(--pure-white) 62%, transparent);
   --glass-border: color-mix(in srgb, var(--brand-deep-teal) 16%, var(--pure-white) 26%);
   --glass-shadow: color-mix(in srgb, var(--deep-navy) 13%, transparent);
-  --glass-tint: color-mix(in srgb, var(--accent) 9%, transparent);
+  --glass-tint: color-mix(in srgb, var(--gradient-teal) 9%, transparent);
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
-  --background: var(--brand-navy);
+  --background: #080e1d;
   --foreground: var(--brand-white);
   --surface: color-mix(in srgb, var(--brand-navy) 88%, var(--brand-deep-teal));
   --surface-strong: var(--brand-deep-teal);
@@ -66,22 +72,22 @@
   --accent-strong: var(--brand-deep-teal);
   --deep-navy: var(--brand-navy);
   --pure-white: var(--brand-white);
-  --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
-  --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
-  --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+  --doodle-line: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+  --doodle-accent: color-mix(in srgb, var(--brand-teal) 64%, transparent);
+  --doodle-muted: color-mix(in srgb, var(--brand-teal) 32%, transparent);
   --doodle-opacity: 0.86;
   --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
   --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
   --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
   --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
   --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
-  --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
+  --glass-tint: color-mix(in srgb, var(--gradient-teal) 13%, transparent);
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    --background: var(--brand-navy);
+    --background: #080e1d;
     --foreground: var(--brand-white);
     --surface: color-mix(in srgb, var(--brand-navy) 88%, var(--brand-deep-teal));
     --surface-strong: var(--brand-deep-teal);
@@ -89,22 +95,23 @@
     --border: color-mix(in srgb, var(--brand-white) 16%, transparent);
     --accent: var(--brand-teal);
     --accent-strong: var(--brand-deep-teal);
-    --doodle-line: color-mix(in srgb, var(--brand-ice) 34%, transparent);
-    --doodle-accent: color-mix(in srgb, var(--brand-teal) 48%, transparent);
-    --doodle-muted: color-mix(in srgb, var(--brand-white) 24%, transparent);
+    --doodle-line: color-mix(in srgb, var(--brand-teal) 48%, transparent);
+    --doodle-accent: color-mix(in srgb, var(--brand-teal) 64%, transparent);
+    --doodle-muted: color-mix(in srgb, var(--brand-teal) 32%, transparent);
     --doodle-opacity: 0.86;
     --glass-fill: color-mix(in srgb, var(--surface) 68%, transparent);
     --glass-fill-strong: color-mix(in srgb, var(--surface-strong) 28%, var(--surface));
     --glass-highlight: color-mix(in srgb, var(--pure-white) 24%, transparent);
     --glass-border: color-mix(in srgb, var(--pure-white) 22%, var(--accent) 14%);
     --glass-shadow: color-mix(in srgb, var(--deep-navy) 30%, transparent);
-    --glass-tint: color-mix(in srgb, var(--accent) 13%, transparent);
+    --glass-tint: color-mix(in srgb, var(--gradient-teal) 13%, transparent);
     color-scheme: dark;
   }
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-gradient-teal: var(--gradient-teal);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-strong: var(--surface-strong);
@@ -160,32 +167,7 @@ body {
   position: absolute;
   inset: -22%;
   content: "";
-  background:
-    linear-gradient(
-      118deg,
-      var(--background) 0%,
-      color-mix(in srgb, var(--background) 68%, var(--accent-strong) 32%) 24%,
-      color-mix(in srgb, var(--accent) 42%, var(--background) 58%) 43%,
-      color-mix(in srgb, var(--accent) 62%, var(--background) 38%) 52%,
-      color-mix(in srgb, var(--accent-strong) 62%, var(--background) 38%) 68%,
-      var(--background) 100%
-    ),
-    linear-gradient(
-      45deg,
-      transparent 0 22%,
-      color-mix(in srgb, var(--brand-ice) 12%, transparent) 28%,
-      transparent 36% 58%,
-      color-mix(in srgb, var(--brand-teal) 18%, transparent) 65%,
-      transparent 74% 100%
-    );
-  background-position:
-    0% 50%,
-    100% 50%;
-  background-size:
-    260% 260%,
-    180% 180%;
-  will-change: transform;
-  animation: cre8iq-gradient-pan 16s ease-in-out infinite alternate;
+  background: var(--background);
 }
 
 .cre8iq-doodle-field::after {
@@ -195,7 +177,7 @@ body {
   content: "";
   background-image: repeating-linear-gradient(
     135deg,
-    color-mix(in srgb, var(--brand-ice) 8%, transparent) 0 1px,
+    color-mix(in srgb, var(--gradient-teal) 8%, transparent) 0 1px,
     transparent 1px 4.25rem
   );
   mask-image: linear-gradient(90deg, transparent, #000 20%, #000 80%, transparent);
@@ -217,7 +199,8 @@ body {
   height: auto;
   fill: none;
   stroke: currentColor;
-  stroke-width: 4.4;
+  stroke-width: 3.4;
+  stroke-dasharray: 0 13;
   stroke-linecap: round;
   stroke-linejoin: round;
   color: var(--doodle-line);
@@ -496,8 +479,8 @@ a {
     linear-gradient(
       120deg,
       transparent,
-      color-mix(in srgb, var(--brand-ice) 18%, transparent) 34%,
-      color-mix(in srgb, var(--accent) 18%, transparent) 48%,
+      color-mix(in srgb, var(--gradient-teal) 18%, transparent) 34%,
+      color-mix(in srgb, var(--gradient-teal) 18%, transparent) 48%,
       transparent
     );
   background-size: 220% 220%;
@@ -542,7 +525,10 @@ a {
 }
 
 .text-link-motion {
-  background-image: linear-gradient(var(--accent), var(--accent));
+  background-image: linear-gradient(
+    var(--gradient-teal),
+    var(--gradient-teal)
+  );
   background-position: 0 100%;
   background-repeat: no-repeat;
   background-size: 0 2px;
@@ -636,7 +622,7 @@ a {
       90deg,
       color-mix(in srgb, var(--pure-white) 18%, transparent),
       transparent 26% 74%,
-      color-mix(in srgb, var(--accent) 12%, transparent)
+      color-mix(in srgb, var(--gradient-teal) 12%, transparent)
     );
   opacity: 0.56;
 }
@@ -677,7 +663,11 @@ a {
       color-mix(in srgb, var(--pure-white) 28%, transparent),
       transparent 32%
     ),
-    color-mix(in srgb, var(--glass-fill-strong) 88%, var(--accent) 12%);
+    color-mix(
+      in srgb,
+      var(--glass-fill-strong) 88%,
+      var(--gradient-teal) 12%
+    );
 }
 
 .cre8iq-glass-card {
@@ -716,8 +706,8 @@ a {
     linear-gradient(
       115deg,
       transparent,
-      color-mix(in srgb, var(--brand-ice) 16%, transparent) 38%,
-      color-mix(in srgb, var(--accent) 16%, transparent) 52%,
+      color-mix(in srgb, var(--gradient-teal) 16%, transparent) 38%,
+      color-mix(in srgb, var(--gradient-teal) 16%, transparent) 52%,
       transparent
     );
   opacity: 0.2;
@@ -742,7 +732,7 @@ a {
       linear-gradient(
         145deg,
         color-mix(in srgb, var(--pure-white) 12%, transparent),
-        color-mix(in srgb, var(--accent) 8%, transparent) 42%,
+        color-mix(in srgb, var(--gradient-teal) 8%, transparent) 42%,
         color-mix(in srgb, var(--surface) 92%, var(--background))
       ) !important;
   }

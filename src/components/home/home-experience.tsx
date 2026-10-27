@@ -586,7 +586,7 @@ function WorkRow({
       data-cursor="interactive"
       className="group relative grid gap-4 overflow-hidden border-b border-border py-7 transition-colors duration-500 hover:bg-surface md:grid-cols-[4rem_1fr_0.7fr_4rem] md:items-center md:px-4"
     >
-      <div className="absolute inset-0 translate-y-full bg-gradient-to-r from-accent/0 via-accent/10 to-accent/0 transition-transform duration-500 group-hover:translate-y-0" />
+      <div className="absolute inset-0 translate-y-full bg-gradient-to-r from-gradient-teal/0 via-gradient-teal/10 to-gradient-teal/0 transition-transform duration-500 group-hover:translate-y-0" />
       <span className="relative z-10 text-sm font-semibold text-muted transition-colors duration-500 group-hover:text-foreground">
         {String(index + 1).padStart(2, "0")}
       </span>

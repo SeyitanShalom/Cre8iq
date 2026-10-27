@@ -63,7 +63,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
             }}
           >
-            Graphic Design / UI/UX Product Design / Web Development
+            Graphic Design / UI/UX Design / Web Development
           </div>
           <div
             style={{

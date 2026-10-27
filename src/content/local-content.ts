@@ -91,7 +91,7 @@ export const services: SiteService[] = [
     ],
   },
   {
-    title: "UI/UX Product Design",
+    title: "UI/UX Design",
     slug: "ui-ux-product-design",
     eyebrow: "Interfaces and product journeys",
     summary:
@@ -161,8 +161,10 @@ export type ProjectVisualType =
   | "brand-system"
   | "dashboard"
   | "website"
+  | "social-kit"
   | "mobile-app"
-  | "landing-page";
+  | "landing-page"
+  | "web-application";
 
 export type ProjectGalleryItem = {
   title: string;
@@ -192,6 +194,7 @@ export type PortfolioProject = {
   featured?: boolean;
   imageUrl?: string;
   imageAlt?: string;
+  websiteUrl?: string;
   summary: string;
   overview: string;
   challenge: string;
@@ -221,530 +224,583 @@ export type PortfolioProject = {
   seoDescription?: string;
 };
 
+
 export const sampleProjects: PortfolioProject[] = [
   {
-    title: "Aurelia Brand Refresh",
-    slug: "aurelia-brand-refresh",
-    category: "Graphic Design",
+    title: "AI-Powered Interview Platform",
+    slug: "ai-interview-platform",
+    category: "Web Development",
     format: "Case study",
     year: "2026",
-    client: "Aurelia Studio",
-    role: "Brand identity and visual system",
+    client: "Academic Project",
+    role: "Product Design and Full-Stack Development",
     accent: "#00acb5",
-    visual: "brand-system",
+    visual: "web-application",
     summary:
-      "A premium identity refresh for a beauty brand built around cleaner visual rules and stronger shelf presence.",
+      "An AI-powered interview platform that helps candidates practice interviews and enables companies to conduct and assess interviews.",
     overview:
-      "Aurelia needed a brand expression that could move across packaging, social content, and campaign moments without feeling scattered.",
+      "The platform is designed to support interview preparation for job seekers while giving companies a structured way to interview candidates and evaluate their responses.",
     challenge:
-      "The brand needed to feel more refined without losing the soft, approachable quality its audience already trusted.",
+      "Candidates need accessible interview practice, while companies need a more organized way to conduct interviews and assess applicants.",
     direction:
-      "The visual system leaned into cleaner spacing, a calmer typographic rhythm, and a tighter set of signature teal-led accents.",
+      "The platform combines an accessible interface with AI-assisted interview workflows, authentication, and structured candidate assessment.",
     outcome:
-      "A tighter identity direction, clearer campaign visuals, and a more consistent social presentation.",
-    services: ["Graphic Design", "Brand Direction", "Campaign Assets"],
-    tools: ["Adobe Illustrator", "Adobe Photoshop", "Figma"],
+      "A full-stack product concept focused on interview practice, candidate evaluation, and a streamlined interview experience.",
+    services: ["UI/UX Design", "Web Development", "AI Integration"],
+    tools: ["Next.js", "TypeScript", "Supabase", "PostgreSQL", "Tailwind CSS"],
     highlights: [
-      "Refined wordmark direction",
-      "Social launch templates",
-      "Color and typography usage rules",
+      "Candidate interview practice",
+      "Company interview workflows",
+      "AI-assisted assessment",
     ],
     goals: [
-      "Make the identity feel more premium and recognizable",
-      "Create a practical visual system for campaign work",
-      "Keep the refreshed brand soft enough for an existing audience",
+      "Make interview practice more accessible",
+      "Help companies organize candidate interviews",
+      "Create a clear and intuitive assessment experience",
     ],
-    metrics: [
-      { value: "18", label: "Launch assets shaped" },
-      { value: "04", label: "Core identity rules" },
-      { value: "03", label: "Campaign templates" },
-    ],
+    metrics: [],
     gallery: [
       {
-        title: "Identity System",
-        label: "01 / Brand rules",
+        title: "Interview Experience",
+        label: "01 / Candidate flow",
         description:
-          "A compact system for logo spacing, signature color use, type pairing, and recurring campaign composition.",
-        visual: "brand-system",
+          "The interface for navigating interview preparation and interview sessions.",
+        visual: "web-application",
       },
       {
-        title: "Launch Templates",
-        label: "02 / Social direction",
+        title: "Platform Dashboard",
+        label: "02 / User workspace",
         description:
-          "Reusable social layouts designed to keep beauty content editorial, light, and immediately recognizable.",
-        visual: "social-kit",
-      },
-      {
-        title: "Campaign Page",
-        label: "03 / Digital touchpoint",
-        description:
-          "A refined web section concept for product storytelling and campaign conversion moments.",
-        visual: "landing-page",
-      },
-    ],
-    caseStudy: {
-      process: [
-        "Audited existing assets and identified where the visual system felt inconsistent.",
-        "Explored refined type, spacing, and campaign composition directions.",
-        "Built reusable launch templates around the selected brand mood.",
-        "Prepared usage notes so future content could stay aligned.",
-      ],
-      solution:
-        "The refresh centered on a tighter wordmark environment, restrained color pairings, clean campaign layouts, and a social kit that could scale beyond one launch.",
-      results: [
-        "The brand presentation became more consistent across everyday content.",
-        "Campaign graphics had clearer hierarchy and stronger product focus.",
-        "The refreshed direction stayed personal and warm while feeling more premium.",
-      ],
-      sections: [
-        {
-          title: "Visual System",
-          description:
-            "The identity rules were kept intentionally compact so they would be easy to apply in real production.",
-          points: [
-            "Defined consistent logo spacing and placement rules",
-            "Balanced soft neutrals with the Cre8iq teal-led accent approach",
-            "Created repeatable campaign layouts for product stories",
-          ],
-        },
-        {
-          title: "Content Rhythm",
-          description:
-            "The social direction gives the brand room to alternate between education, launch, and proof content.",
-          points: [
-            "Built content types for announcements, features, and testimonials",
-            "Used simple type hierarchy to keep posts readable at small sizes",
-            "Created a layout pattern that can be extended through local content files",
-          ],
-        },
-      ],
-    },
-  },
-  {
-    title: "FluxPay Product Dashboard",
-    slug: "fluxpay-product-dashboard",
-    category: "UI/UX Product Design",
-    format: "Case study",
-    year: "2026",
-    client: "FluxPay",
-    role: "Dashboard UX and UI design",
-    accent: "#00575c",
-    visual: "dashboard",
-    summary:
-      "A finance dashboard concept focused on calmer data scanning, clearer actions, and trust-building interface patterns.",
-    overview:
-      "FluxPay needed a dashboard direction that made financial data easier to scan while still making important actions feel close at hand.",
-    challenge:
-      "Financial actions felt too busy and unclear, making the dashboard harder to scan during daily use.",
-    direction:
-      "The interface was shaped around fewer priority zones, clearer status language, and reusable product patterns for repeated finance tasks.",
-    outcome:
-      "A cleaner information hierarchy, stronger action placement, and a more confident product experience.",
-    services: ["UI/UX Product Design", "Design System", "Prototype"],
-    tools: ["Figma", "FigJam", "Notion"],
-    highlights: [
-      "Dashboard information architecture",
-      "Reusable product components",
-      "Interactive prototype flow",
-    ],
-    goals: [
-      "Reduce dashboard scanning friction",
-      "Make primary actions easier to find",
-      "Create reusable components for future product areas",
-    ],
-    metrics: [
-      { value: "09", label: "Core screens" },
-      { value: "24", label: "Reusable UI parts" },
-      { value: "03", label: "Primary task flows" },
-    ],
-    gallery: [
-      {
-        title: "Overview Dashboard",
-        label: "01 / Daily scan",
-        description:
-          "A calmer financial overview that prioritizes balance, activity, alerts, and the next useful action.",
+          "A structured workspace for accessing interviews and related activities.",
         visual: "dashboard",
       },
       {
-        title: "Mobile Transfer Flow",
-        label: "02 / Task path",
+        title: "Product Interface",
+        label: "03 / UI system",
         description:
-          "A tighter transfer flow designed to make review states and confirmation moments feel trustworthy.",
-        visual: "mobile-app",
-      },
-      {
-        title: "Component Library",
-        label: "03 / Product system",
-        description:
-          "Reusable interface pieces for cards, tables, controls, empty states, and financial status indicators.",
+          "Reusable interface patterns and layouts for the platform.",
         visual: "website",
       },
     ],
     caseStudy: {
       process: [
-        "Mapped the highest-frequency finance tasks and the information needed to complete them.",
-        "Restructured dashboard zones around daily scanning and urgent action.",
-        "Designed high-fidelity screens and reusable interface components.",
-        "Connected the screens into a prototype to test task movement and clarity.",
+        "Defined the platform's candidate and company use cases.",
+        "Planned the application structure and user flows.",
+        "Developed the frontend and database integration.",
+        "Worked on the AI interview experience and supporting workflows.",
       ],
       solution:
-        "The dashboard became a quieter workspace with clear data blocks, restrained motion cues, direct action placement, and a system of components that could extend into future product areas.",
+        "A web-based interview platform designed to bring interview practice and company-led candidate assessment into one application.",
       results: [
-        "Daily account status became easier to understand at a glance.",
-        "Key finance actions gained stronger placement and clearer review states.",
-        "The interface gained a repeatable component language for product expansion.",
+        "Established a product direction for candidates and companies.",
+        "Structured the application around interview-related workflows.",
+        "Created a foundation for AI-assisted interview experiences.",
       ],
       sections: [
         {
-          title: "Information Hierarchy",
+          title: "Candidate Experience",
           description:
-            "The first screen was reorganized around the questions users ask most often when they open a finance product.",
+            "The candidate side focuses on interview preparation and navigating interview sessions.",
           points: [
-            "Moved balance, status, and recent activity into predictable zones",
-            "Reduced competing actions in the first viewport",
-            "Used label hierarchy to separate insight from transaction detail",
+            "Interview practice workflows",
+            "Clear navigation between application features",
+            "An interface designed around interview preparation",
           ],
         },
         {
-          title: "Trust Cues",
+          title: "Technical Architecture",
           description:
-            "Financial interfaces need to feel calm during review and confirmation moments.",
+            "The application uses a modern web stack with a relational database backend.",
           points: [
-            "Designed explicit review states before final actions",
-            "Used status chips for pending, complete, and flagged activity",
-            "Kept destructive actions visually separate from common tasks",
+            "Next.js application architecture",
+            "Supabase and PostgreSQL integration",
+            "AI interview functionality",
           ],
         },
       ],
     },
   },
   {
-    title: "Northline Studio Website",
-    slug: "northline-studio-website",
+    title: "Johnvents Apex League",
+    slug: "johnvents-apex-league",
     category: "Web Development",
-    format: "Simple project",
+    format: "Case study",
     year: "2026",
-    client: "Northline Studio",
-    role: "Frontend design and development",
-    accent: "#e3feff",
-    visual: "website",
+    client: "Johnvents Apex League",
+    role: "Product Design and Web Development",
+    accent: "#00acb5",
+    visual: "web-application",
     summary:
-      "A refined portfolio website concept for a creative studio, built with responsive layouts and elegant content flow.",
+      "A football competition platform designed to support match information, team records, fixtures, results, and league standings.",
     overview:
-      "Northline needed a compact website structure that made their work easier to browse and their services easier to understand.",
+      "The platform supports the digital presentation and management of a school football competition, making competition information easier for teams, organizers, and supporters to access.",
     challenge:
-      "The studio needed a web presence that made their work easier to browse and their offer easier to understand.",
+      "Managing teams, fixtures, results, and competition records becomes more demanding as a tournament expands across locations and stages.",
     direction:
-      "The site direction focused on editorial project browsing, direct service language, and an uncomplicated contact path.",
+      "The platform brings competition information into one place, with public-facing pages and administrative tools for managing football data.",
     outcome:
-      "A polished responsive site structure with stronger project presentation and clearer contact paths.",
-    services: ["Web Development", "UI Design", "Responsive Build"],
-    tools: ["Next.js", "React", "Tailwind CSS"],
+      "A digital platform direction for presenting fixtures, match results, team information, and competition standings.",
+    services: [
+      "UI/UX Design",
+      "Web Development",
+      "Sports Platform Development",
+    ],
+    tools: ["Next.js", "React", "Express.js", "MongoDB", "Tailwind CSS"],
     highlights: [
-      "Responsive page system",
-      "Premium work archive layout",
-      "Fast-loading frontend foundation",
+      "Team and player management",
+      "Fixtures and match results",
+      "League standings and match details",
     ],
     goals: [
-      "Create a sharper first impression",
-      "Make selected work easier to scan",
-      "Keep the build ready for future content updates",
+      "Make competition information accessible",
+      "Simplify match administration",
+      "Maintain organized team and competition records",
     ],
-    metrics: [
-      { value: "05", label: "Responsive page views" },
-      { value: "03", label: "Conversion paths" },
-      { value: "01", label: "Local content structure" },
-    ],
+    metrics: [],
     gallery: [
       {
-        title: "Homepage System",
-        label: "01 / First screen",
+        title: "Competition Homepage",
+        label: "01 / Overview",
         description:
-          "A compact homepage direction built around a clear proposition, selected work, and quick contact movement.",
+          "A central entry point for competition news, fixtures, results, and updates.",
         visual: "website",
       },
       {
-        title: "Project Archive",
-        label: "02 / Work browsing",
+        title: "Match Centre",
+        label: "02 / Match information",
         description:
-          "A work listing pattern designed to make project type, client, and creative focus easy to compare.",
-        visual: "landing-page",
+          "A match-focused interface for presenting scores, match events, and team information.",
+        visual: "dashboard",
       },
       {
-        title: "Responsive States",
-        label: "03 / Build quality",
+        title: "Competition Management",
+        label: "03 / Administration",
         description:
-          "Mobile and desktop layouts kept the same editorial tone while adapting spacing and content density.",
-        visual: "mobile-app",
+          "An administrative interface for organizing competition data and match updates.",
+        visual: "web-application",
       },
     ],
-    simpleProject: {
-      scope:
-        "A focused web design and frontend build for a studio portfolio with reusable sections and clear project-routing patterns.",
-      deliverables: [
-        "Responsive homepage and project archive",
-        "Reusable page sections",
-        "Contact CTA system",
-        "Local content structure notes",
+    caseStudy: {
+      process: [
+        "Mapped the competition's information and management requirements.",
+        "Planned the public pages and administrative workflows.",
+        "Structured the data around teams, players, fixtures, and matches.",
+        "Developed the platform architecture and match-management features.",
       ],
-      handoff: [
-        "Reusable component structure",
-        "Responsive layout checks",
-        "Build-ready frontend files",
+      solution:
+        "A football management platform that connects public competition pages with structured match and team administration.",
+      results: [
+        "Defined a central structure for competition information.",
+        "Organized key football entities and match records.",
+        "Established a foundation for presenting results and standings.",
       ],
-    },
-  },
-  {
-    title: "Luma Social Kit",
-    slug: "luma-social-kit",
-    category: "Graphic Design",
-    format: "Simple project",
-    year: "2026",
-    client: "Luma Organics",
-    role: "Social media design system",
-    accent: "#00acb5",
-    visual: "social-kit",
-    summary:
-      "A flexible content kit for a wellness brand that needed social posts to feel more consistent and editorial.",
-    overview:
-      "Luma needed a reusable content kit that could turn wellness education, launch notes, and product proof into a recognizable feed system.",
-    challenge:
-      "The brand had strong content but inconsistent visuals across launches, education posts, and product highlights.",
-    direction:
-      "The kit used a restrained layout system, repeatable text zones, and a soft product-led visual rhythm.",
-    outcome:
-      "A reusable system of post styles that made the content easier to produce and easier to recognize.",
-    services: ["Graphic Design", "Social Media Design"],
-    tools: ["Adobe Photoshop", "Figma"],
-    highlights: [
-      "Content template set",
-      "Launch post direction",
-      "Reusable visual rules",
-    ],
-    goals: [
-      "Make recurring content easier to produce",
-      "Improve recognition across the feed",
-      "Keep the visual language calm and editorial",
-    ],
-    metrics: [
-      { value: "12", label: "Post templates" },
-      { value: "04", label: "Content types" },
-      { value: "02", label: "Launch sets" },
-    ],
-    gallery: [
-      {
-        title: "Feed Grid",
-        label: "01 / Content rhythm",
-        description:
-          "A nine-post rhythm balancing product moments, education, proof, and soft campaign announcements.",
-        visual: "social-kit",
-      },
-      {
-        title: "Template Set",
-        label: "02 / Production kit",
-        description:
-          "Editable layouts for quotes, ingredient education, product features, and launch countdowns.",
-        visual: "brand-system",
-      },
-      {
-        title: "Story Frames",
-        label: "03 / Mobile content",
-        description:
-          "Simple vertical layouts for quick announcements and product education.",
-        visual: "mobile-app",
-      },
-    ],
-    simpleProject: {
-      scope:
-        "A social-first design system for recurring wellness content, launch storytelling, and product education.",
-      deliverables: [
-        "Static feed templates",
-        "Story frame layouts",
-        "Content usage notes",
-        "Launch announcement direction",
-      ],
-      handoff: [
-        "Editable Figma templates",
-        "Export-ready post sizes",
-        "Simple usage guide for repeat posts",
+      sections: [
+        {
+          title: "Match Management",
+          description:
+            "The match centre is designed around the information needed to follow a football match.",
+          points: [
+            "Fixtures and match scheduling",
+            "Scores and match events",
+            "Team lineups and match details",
+          ],
+        },
+        {
+          title: "Competition Data",
+          description:
+            "Structured competition records support the presentation of teams and standings.",
+          points: [
+            "Team and player records",
+            "Match results",
+            "League table information",
+          ],
+        },
       ],
     },
   },
   {
-    title: "NovaLearn Mobile App",
-    slug: "novalearn-mobile-app",
-    category: "UI/UX Product Design",
+    title: "Attendance OCR System",
+    slug: "attendance-ocr-system",
+    category: "Web Development",
     format: "Case study",
     year: "2026",
-    client: "NovaLearn",
-    role: "Mobile app UX and UI",
+    client: "Independent Project",
+    role: "System Design and Full-Stack Development",
+    accent: "#00575c",
+    visual: "web-application",
+    summary:
+      "An attendance digitization system concept that extracts information from photographed or scanned attendance records.",
+    overview:
+      "The system explores how attendance information can be captured from different document layouts and converted into structured digital records.",
+    challenge:
+      "Attendance sheets differ in their layouts and fields, making it difficult to extract and store information using one fixed format.",
+    direction:
+      "The proposed workflow combines OCR-based text extraction with flexible field recognition and structured data storage.",
+    outcome:
+      "A system concept for reducing manual attendance data entry and supporting varied attendance record formats.",
+    services: [
+      "System Design",
+      "Web Development",
+      "OCR Integration",
+      "Database Design",
+    ],
+    tools: ["Python", "OCR Technology", "React", "Database Technologies"],
+    highlights: [
+      "Image-based text extraction",
+      "Flexible attendance fields",
+      "Structured digital records",
+    ],
+    goals: [
+      "Reduce manual data entry",
+      "Support different attendance sheet formats",
+      "Organize extracted information for later retrieval",
+    ],
+    metrics: [],
+    gallery: [
+      {
+        title: "Document Capture",
+        label: "01 / Input",
+        description:
+          "A workflow for submitting photographed or scanned attendance sheets.",
+        visual: "web-application",
+      },
+      {
+        title: "Extracted Information",
+        label: "02 / Data extraction",
+        description:
+          "A review interface for checking information extracted from attendance records.",
+        visual: "dashboard",
+      },
+      {
+        title: "Digital Records",
+        label: "03 / Data management",
+        description:
+          "A structured view of attendance data after extraction and review.",
+        visual: "website",
+      },
+    ],
+    caseStudy: {
+      process: [
+        "Identified common attendance sheet layouts and field variations.",
+        "Considered OCR workflows for extracting text from document images.",
+        "Designed a flexible approach to handling different extracted fields.",
+        "Planned how extracted information could be reviewed and stored.",
+      ],
+      solution:
+        "An attendance digitization workflow that treats document images as inputs and structured attendance records as outputs.",
+      results: [
+        "Defined a flexible approach to attendance data extraction.",
+        "Identified the need for review and correction of OCR results.",
+        "Outlined a data model for varying attendance fields.",
+      ],
+      sections: [
+        {
+          title: "Document Processing",
+          description:
+            "The input workflow accommodates attendance records with different layouts.",
+          points: [
+            "Photograph or scan attendance documents",
+            "Extract text using OCR",
+            "Review extracted fields for accuracy",
+          ],
+        },
+        {
+          title: "Flexible Data Storage",
+          description:
+            "The system is intended to handle different fields depending on the attendance document.",
+          points: [
+            "Support different attendance attributes",
+            "Organize extracted records",
+            "Enable retrieval of saved information",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    title: "Glowera Skincare App",
+    slug: "glowera-skincare-app",
+    category: "UI/UX Design",
+    format: "Case study",
+    year: "2025",
+    client: "SIWES Project",
+    role: "UI/UX Designer",
+    accent: "#00acb5",
+    visual: "mobile-app",
+    summary:
+      "A skincare app concept focused on presenting skincare products and information through a clear mobile experience.",
+    overview:
+      "Glowera was one of the product design projects explored during your SIWES placement, providing an opportunity to apply user interface and experience design principles.",
+    challenge:
+      "Skincare products and related information need to be presented in a way that feels approachable and easy to navigate on mobile devices.",
+    direction:
+      "The design work focused on mobile interface structure, visual hierarchy, and a consistent product experience.",
+    outcome:
+      "A skincare product design project demonstrating mobile UI/UX design and interface organization.",
+    services: ["UI/UX Design", "Mobile App Design", "Prototyping"],
+    tools: ["Figma", "FigJam"],
+    highlights: [
+      "Mobile interface design",
+      "Visual hierarchy",
+      "User flow exploration",
+    ],
+    goals: [
+      "Create a clear mobile browsing experience",
+      "Organize skincare information effectively",
+      "Apply consistent interface design principles",
+    ],
+    metrics: [],
+    gallery: [
+      {
+        title: "App Interface",
+        label: "01 / Mobile UI",
+        description: "Selected mobile screens from the skincare app design.",
+        visual: "mobile-app",
+      },
+      {
+        title: "Interface Patterns",
+        label: "02 / Components",
+        description:
+          "Reusable interface elements and visual patterns used in the design.",
+        visual: "website",
+      },
+      {
+        title: "User Flow",
+        label: "03 / Experience",
+        description:
+          "The planned flow through the app's key user interactions.",
+        visual: "mobile-app",
+      },
+    ],
+    caseStudy: {
+      process: [
+        "Explored the product's user experience and information structure.",
+        "Organized the mobile screens and navigation flow.",
+        "Developed the interface in Figma.",
+        "Refined visual consistency across the designed screens.",
+      ],
+      solution:
+        "A mobile-first skincare app design focused on accessible navigation and a consistent visual experience.",
+      results: [
+        "Produced a structured mobile UI/UX design direction.",
+        "Applied consistent interface patterns.",
+        "Practised product design workflows during SIWES.",
+      ],
+      sections: [
+        {
+          title: "Mobile Experience",
+          description:
+            "The design prioritizes clarity and comfortable navigation on smaller screens.",
+          points: [
+            "Mobile screen layouts",
+            "Information hierarchy",
+            "Consistent UI patterns",
+          ],
+        },
+        {
+          title: "Design Process",
+          description:
+            "The project provided practical experience with interface design and prototyping.",
+          points: [
+            "Figma-based design",
+            "User flow planning",
+            "Interface refinement",
+          ],
+        },
+      ],
+    },
+  },
+  {
+    title: "RememberMe Task Manager",
+    slug: "rememberme-task-manager",
+    category: "UI/UX Design",
+    format: "Case study",
+    year: "2025",
+    client: "SIWES Project",
+    role: "UI/UX Designer",
     accent: "#00575c",
     visual: "mobile-app",
     summary:
-      "A mobile learning app concept designed around simple lesson discovery and cleaner progress tracking.",
+      "A task management app concept designed to help users organize tasks and keep track of their responsibilities.",
     overview:
-      "NovaLearn needed a mobile learning flow that helped users find lessons quickly and understand progress without feeling overloaded.",
+      "RememberMe was a task management product explored during SIWES, with a focus on organizing tasks through a mobile interface.",
     challenge:
-      "Learners needed a calmer way to find courses, continue lessons, and understand their weekly progress.",
+      "Users need a clear way to view, organize, and keep track of tasks without making everyday planning feel complicated.",
     direction:
-      "The app direction emphasized progressive disclosure, clear lesson grouping, and small visual cues for progress and continuity.",
+      "The design explored task organization, interface hierarchy, and mobile-friendly interaction patterns.",
     outcome:
-      "A focused mobile flow with clearer learning paths, progress cues, and stronger visual hierarchy.",
-    services: ["UI/UX Product Design", "Mobile App Design"],
+      "A mobile product design project centered on task management and everyday productivity.",
+    services: ["UI/UX Design", "Mobile App Design", "Prototyping"],
     tools: ["Figma", "FigJam"],
     highlights: [
-      "Mobile user flow",
-      "Lesson discovery screens",
-      "Progress tracking interface",
+      "Task management interface",
+      "Mobile user flows",
+      "Productivity-focused UI",
     ],
     goals: [
-      "Make continuing a lesson feel immediate",
-      "Clarify progress without adding pressure",
-      "Create a friendly but polished mobile interface",
+      "Make tasks easier to organize",
+      "Keep task information easy to scan",
+      "Create a straightforward mobile experience",
     ],
-    metrics: [
-      { value: "11", label: "Mobile screens" },
-      { value: "04", label: "Learning states" },
-      { value: "02", label: "Core flows" },
-    ],
+    metrics: [],
     gallery: [
       {
-        title: "Course Discovery",
-        label: "01 / Find lessons",
+        title: "Task Overview",
+        label: "01 / Task organization",
         description:
-          "A mobile browsing flow with clearer lesson groups, featured paths, and continued-learning shortcuts.",
+          "A mobile interface concept for viewing and organizing tasks.",
         visual: "mobile-app",
       },
       {
-        title: "Progress Dashboard",
-        label: "02 / Track growth",
+        title: "Task Details",
+        label: "02 / Task flow",
         description:
-          "A compact dashboard that makes streaks, weekly progress, and next lessons easy to understand.",
-        visual: "dashboard",
+          "An exploration of how task information and actions can be presented clearly.",
+        visual: "mobile-app",
       },
       {
-        title: "Lesson Detail",
-        label: "03 / Focus state",
+        title: "Interface System",
+        label: "03 / UI patterns",
         description:
-          "A quieter lesson page with simple metadata, clear start actions, and a useful completion state.",
+          "Consistent components and visual patterns across the product screens.",
         visual: "website",
       },
     ],
     caseStudy: {
       process: [
-        "Mapped the learner journey from discovery to continuation.",
-        "Simplified course groupings and reduced duplicated navigation choices.",
-        "Designed mobile-first screens for browsing, progress, and lesson detail.",
-        "Refined visual hierarchy around the next meaningful action.",
+        "Considered common task management needs and user flows.",
+        "Organized the mobile interface around task information.",
+        "Designed screens and interactions in Figma.",
+        "Refined the interface for clarity and consistency.",
       ],
       solution:
-        "The app concept uses clear learning paths, compact progress indicators, and calm lesson pages so users can understand where they are and what to do next.",
+        "A task management app design concept that organizes everyday responsibilities within a clear mobile interface.",
       results: [
-        "Lesson discovery became more direct and less crowded.",
-        "Progress information became easier to understand without heavy dashboards.",
-        "The mobile UI gained a more focused and premium learning feel.",
+        "Developed a mobile task management design direction.",
+        "Explored productivity-focused screen layouts.",
+        "Applied reusable interface design patterns.",
       ],
       sections: [
         {
-          title: "Discovery Flow",
+          title: "Task Organization",
           description:
-            "The browsing experience was organized around intent instead of content volume.",
+            "The interface is designed to make tasks easier to understand and manage.",
           points: [
-            "Grouped lessons by learner goal and continuation state",
-            "Made the next lesson available from the first screen",
-            "Kept metadata short so cards stayed easy to compare",
+            "Task overview",
+            "Task information hierarchy",
+            "Clear interaction patterns",
           ],
         },
         {
-          title: "Progress Language",
+          title: "Product Design",
           description:
-            "Progress cues needed to encourage users without turning the interface into a stats-heavy product.",
+            "The project focused on translating a productivity use case into a mobile interface.",
           points: [
-            "Used weekly progress cards for light accountability",
-            "Balanced streaks with completion and saved paths",
-            "Kept visual feedback calm and easy to scan",
+            "Mobile-first screen design",
+            "User flow exploration",
+            "Consistent UI components",
           ],
         },
       ],
     },
   },
   {
-    title: "Mosaic Agency Landing Page",
-    slug: "mosaic-agency-landing-page",
-    category: "Web Development",
-    format: "Simple project",
-    year: "2026",
-    client: "Mosaic Agency",
-    role: "Landing page design and frontend build",
+    title: "Airline Travel App",
+    slug: "airline-travel-app",
+    category: "UI/UX Design",
+    format: "Case study",
+    year: "2025",
+    client: "SIWES Project",
+    role: "UI/UX Designer",
     accent: "#00acb5",
-    visual: "landing-page",
+    visual: "mobile-app",
     summary:
-      "A polished landing page concept for a small agency that needed a sharper first impression and stronger lead flow.",
+      "An airline app concept exploring digital check-in, boarding passes, luggage tracking, and flight notifications.",
     overview:
-      "Mosaic needed a single-page experience that explained the offer quickly and moved qualified visitors toward contact.",
+      "The airline app project explored how key travel activities could be organized within a single mobile experience, from checking in to receiving flight updates.",
     challenge:
-      "The original page lacked a clear message, strong service structure, and a focused contact path.",
+      "Travellers need access to important flight information and travel tasks without navigating disconnected experiences.",
     direction:
-      "The page was structured around a stronger first screen, concise service proof, and repeated contact opportunities.",
+      "The design focused on organizing essential travel actions and making flight-related information accessible through mobile screens.",
     outcome:
-      "A cleaner one-page experience with stronger positioning, service blocks, and direct conversion points.",
-    services: ["Web Development", "Landing Page Design"],
-    tools: ["Next.js", "Tailwind CSS", "React"],
+      "A travel app design project covering important stages of the passenger journey.",
+    services: ["UI/UX Design", "Mobile App Design", "User Flow Design"],
+    tools: ["Figma", "FigJam"],
     highlights: [
-      "High-converting page structure",
-      "Responsive frontend build",
-      "Contact-focused CTA flow",
+      "Digital check-in",
+      "Boarding pass experience",
+      "Luggage tracking concept",
+      "Flight notifications",
     ],
     goals: [
-      "Clarify the agency offer in the first viewport",
-      "Give service sections a stronger order",
-      "Make contact feel natural throughout the page",
+      "Simplify access to check-in",
+      "Make boarding information easy to find",
+      "Present luggage and flight updates clearly",
     ],
-    metrics: [
-      { value: "01", label: "Focused page" },
-      { value: "05", label: "Content sections" },
-      { value: "04", label: "CTA moments" },
-    ],
+    metrics: [],
     gallery: [
       {
-        title: "Hero Structure",
-        label: "01 / First impression",
+        title: "Check-in Experience",
+        label: "01 / Passenger journey",
         description:
-          "A direct first screen with a clearer promise, supporting service cues, and a visible conversion route.",
-        visual: "landing-page",
+          "A flow exploring check-in availability, passenger registration, and boarding pass access.",
+        visual: "mobile-app",
       },
       {
-        title: "Service Blocks",
-        label: "02 / Offer clarity",
+        title: "Luggage Tracking",
+        label: "02 / Travel updates",
         description:
-          "Concise service sections designed for scanning and quick fit decisions.",
-        visual: "website",
+          "A concept for making luggage status and tracking information accessible to passengers.",
+        visual: "mobile-app",
       },
       {
-        title: "Mobile Landing",
-        label: "03 / Responsive path",
+        title: "Flight Notifications",
+        label: "03 / Flight information",
         description:
-          "A stacked mobile layout that keeps the CTA close without overwhelming the page.",
+          "A mobile experience for communicating relevant flight updates and travel information.",
         visual: "mobile-app",
       },
     ],
-    simpleProject: {
-      scope:
-        "A focused landing page design and frontend build for a small agency repositioning its offer online.",
-      deliverables: [
-        "Responsive landing page",
-        "Service section structure",
-        "CTA and contact flow",
-        "Frontend build components",
+    caseStudy: {
+      process: [
+        "Mapped key stages of the passenger journey.",
+        "Organized the check-in and boarding pass flow.",
+        "Explored luggage tracking and flight notification experiences.",
+        "Designed the mobile interface in Figma.",
       ],
-      handoff: [
-        "Production-ready page structure",
-        "Reusable section components",
-        "Responsive QA notes",
+      solution:
+        "A mobile airline app concept that brings check-in, boarding information, luggage tracking, and flight updates into one travel experience.",
+      results: [
+        "Defined a structured passenger journey.",
+        "Explored the connection between check-in and boarding pass access.",
+        "Designed concepts for luggage and flight status communication.",
+      ],
+      sections: [
+        {
+          title: "Passenger Journey",
+          description:
+            "The experience supports important steps before and during a flight.",
+          points: [
+            "Check-in availability",
+            "Passenger registration and boarding pass",
+            "Access to flight information",
+          ],
+        },
+        {
+          title: "Travel Updates",
+          description:
+            "The app explores ways to keep passengers informed about their journey.",
+          points: [
+            "Luggage tracking concept",
+            "Flight update notifications",
+            "Accessible travel information",
+          ],
+        },
       ],
     },
   },
 ];
+
 
 export const projectCategories = Array.from(
   new Set(sampleProjects.map((project) => project.category)),
